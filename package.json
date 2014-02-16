@@ -1,0 +1,23 @@
+{
+  "name": "Stickr",
+  "version": "0.0.0",
+  "description": "Stickr ======",
+  "main": "web.js",
+  "dependencies": {
+    "node-static": "~0.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/YOwatari/Stickr"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YOwatari/Stickr/issues"
+  },
+  "homepage": "https://github.com/YOwatari/Stickr"
+}
