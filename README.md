@@ -16,3 +16,8 @@ npde web.js
 Open http://localhost:5000
 
 :)
+
+製作
+======
+app以下がAngularJS扱えるテンプレートになってます．
+ここを編集することでページを作成できます．
