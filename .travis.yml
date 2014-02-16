@@ -6,4 +6,4 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
 notifications:
-  hipchat: Ag8PAFBR2qbY2AULfVRQsFixfea3erDh9WjzR48P@BananaChoco
+  hipchat: e64eeda734e0329b42351391da5d16@BananaChoco
