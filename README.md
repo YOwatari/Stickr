@@ -9,7 +9,7 @@ SETUP
 ```
 git clone git@github.com:YOwatari/Stickr
 cd Stickr
-npm install node-static
+npm install
 npde web.js
 ```
 
