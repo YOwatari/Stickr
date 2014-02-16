@@ -3,12 +3,16 @@ Stickr
 
 ステッカー試し張りサービス BananaChoco@DMTC☓MS
 
-INSTALL
+SETUP
 ======
 
 ```
-npm install -g yo
 git clone git@github.com:YOwatari/Stickr
 cd Stickr
-npm install && bower install
+npm install node-static
+npde web.js
 ```
+
+Open http://localhost:5000
+
+:)
