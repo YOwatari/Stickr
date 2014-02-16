@@ -1,9 +1,0 @@
-language: node_js
-node_js:
-  - '0.8'
-  - '0.10'
-before_script:
-  - 'npm install -g bower grunt-cli'
-  - 'bower install'
-notifications:
-  hipchat: Ag8PAFBR2qbY2AULfVRQsFixfea3erDh9WjzR48P@BananaChoco
