@@ -3,6 +3,10 @@ Stickr
 
 ステッカー試し張りサービス BananaChoco@DMTC☓MS
 
+master: [![Build Status](https://travis-ci.org/YOwatari/Stickr.png?branch=master)](https://travis-ci.org/YOwatari/Stickr)
+
+develop: [![Build Status](https://travis-ci.org/YOwatari/Stickr.png?branch=develop)](https://travis-ci.org/YOwatari/Stickr)
+
 SETUP
 ======
 
@@ -27,10 +31,11 @@ Webアプリ起動
 grunt serve
 ```
 
-Open http://localhost:5000
+勝手に開いていい感じに．
+たぶん，編集すると勝手にリロードして反映してくれる('∇')
 
-:)
 
-製作
+開発
 ======
-思案中
+developブランチからブランチを切って，機能とかリソースとかを実装する
+できたら，developブランチへマージ(--no-ffがイイカモ)して完了！
