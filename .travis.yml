@@ -5,9 +5,10 @@ before_script:
 - npm install -g bower grunt-cli
 - bower install
 - gem install sass compass
-- grunt build
 script:
 - grunt test
+after_success:
+- grunt build
 notifications:
   email: false
   hipchat:
