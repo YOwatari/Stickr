@@ -1,11 +1,16 @@
 language: node_js
 node_js:
-- '0.8'
-- '0.10'
+  - '0.10'
 before_script:
-- npm install -g bower grunt-cli
-- bower install
+  - npm install -g bower grunt-cli
+  - bower install
+  - gem install sass compass
+script:
+  - grunt test
 notifications:
+  email: false
   hipchat:
+    on_success: always
+    on_failure: always
     rooms:
-      secure: fs6IVIR5LDostJaISO/No+8XLGW3QyHNuY5kHFv6LPFyopVyykt1cTwtIDn9KbU2vBZoFDf0NXfwwCW4+si4VSyU2LvMIImMTT47I/oAWW5VGI1t22UVesLFbkVCoJhfaaVqDciVDTEcxAVeYI/FjWZnQK99JCDooSUPPOlV2O0=
+      secure: VN9PCqVT7XwFIEemGo2CER3hY3QEdlCspKm1TperNFKt+53Q6c2tu/NxHW2k+qXzk9p1JxI6YG+w2CGUTiodXJ2mt0pFfffwp67fwEGTGw3vTAGmsyWiT3HWeA+1PMEmV08/XpqoEUiVnL4QXhDM3bgOfRCWouIauJM1yBKFKds=
