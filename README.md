@@ -18,6 +18,7 @@ npm install && bower install
 MongoDB起動
 ```
 cd Stickr
+mkdir mongo
 mongod --dbpath mongo
 ```
 
