@@ -4,8 +4,9 @@ node_js:
 before_script:
   - npm install -g bower grunt-cli
   - bower install
+  - gem install sass compass
 script:
-  - grunt karma
+  - grunt test
 notifications:
   email: false
   hipchat:
