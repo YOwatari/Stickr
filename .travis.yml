@@ -22,6 +22,7 @@ deploy:
     master: stickr
     deploy: stickr-staging
   on:
+    node_js: '0.10.x'
     repo: YOwatari/Stickr
   run:
-    - grunt serve:dist
+    - npm start
