@@ -6,6 +6,9 @@ before_script:
 - npm install -g bower grunt-cli
 - bower install
 notifications:
+  email: false
   hipchat:
+    on_success: always # default: change
+    on_failure: always # default: always
     rooms:
       secure: fs6IVIR5LDostJaISO/No+8XLGW3QyHNuY5kHFv6LPFyopVyykt1cTwtIDn9KbU2vBZoFDf0NXfwwCW4+si4VSyU2LvMIImMTT47I/oAWW5VGI1t22UVesLFbkVCoJhfaaVqDciVDTEcxAVeYI/FjWZnQK99JCDooSUPPOlV2O0=
