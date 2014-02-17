@@ -5,6 +5,7 @@ before_script:
 - npm install -g bower grunt-cli
 - bower install
 - gem install sass compass
+- grunt build
 script:
 - grunt test
 notifications:
@@ -19,10 +20,9 @@ deploy:
   api_key:
     secure: a5FiP+bLTHkxaKz9qYjRrUcyMZ3U7n/Gckz4uylJgXNdoXhgSIbSyeosfoq5i9E78LfCBSwuUUoWEy7w8QwpJKuWGXmvIN0bKFlsnyjq71dgkbkeUusYy2V7o1lBqnMfENSF7xVLT4WuxQ8m7NvrwGT2iSprhEVHFe2dOrbqG9Y=
   app:
-    production: stickr
-    staging: stickr-staging
+    master: stickr
+    develop: stickr-staging
   on:
-    node_js: '0.10'
     repo: YOwatari/Stickr
   run:
-    - grunt serve:dist
+    - npm start
