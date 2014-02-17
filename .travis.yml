@@ -25,5 +25,3 @@ deploy:
     develop: stickr-staging
   on:
     repo: YOwatari/Stickr
-  run:
-    - node dist/server.js
