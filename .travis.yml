@@ -7,6 +7,8 @@ before_script:
 - gem install sass compass
 script:
 - grunt test
+after_success:
+- grunt build
 notifications:
   email: false
   hipchat:
@@ -19,10 +21,9 @@ deploy:
   api_key:
     secure: a5FiP+bLTHkxaKz9qYjRrUcyMZ3U7n/Gckz4uylJgXNdoXhgSIbSyeosfoq5i9E78LfCBSwuUUoWEy7w8QwpJKuWGXmvIN0bKFlsnyjq71dgkbkeUusYy2V7o1lBqnMfENSF7xVLT4WuxQ8m7NvrwGT2iSprhEVHFe2dOrbqG9Y=
   app:
-    production: stickr
-    staging: stickr-staging
+    master: stickr
+    develop: stickr-staging
   on:
-    node_js: '0.10'
     repo: YOwatari/Stickr
   run:
-    - npm start
+    - grunt serve:dist
