@@ -26,4 +26,4 @@ deploy:
   on:
     repo: YOwatari/Stickr
   run:
-    - grunt serve:dist
+    - node dist/server.js
