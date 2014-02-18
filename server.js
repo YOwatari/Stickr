@@ -3,8 +3,7 @@
 var express = require('express'),
     path = require('path'),
     fs = require('fs'),
-    mongoose = require('mongoose'),
-    gzippo = require('gzippo');
+    mongoose = require('mongoose');
 
 /**
  * Main application file
@@ -40,9 +39,6 @@ require('./lib/config/express')(app);
 
 // Routing
 require('./lib/routes')(app);
-
-// dist hosting
-app.use(gzippo.staticGzip("" + __dirname + "/dist"));
 
 // Start server
 app.listen(config.port, function () {
