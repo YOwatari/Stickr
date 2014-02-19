@@ -1,7 +1,23 @@
 language: node_js
 node_js:
-  - '0.8'
   - '0.10'
 before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
+  - gem install sass compass
+notifications:
+  email: false
+  hipchat:
+    on_success: always
+    on_failure: always
+    rooms:
+      secure: VN9PCqVT7XwFIEemGo2CER3hY3QEdlCspKm1TperNFKt+53Q6c2tu/NxHW2k+qXzk9p1JxI6YG+w2CGUTiodXJ2mt0pFfffwp67fwEGTGw3vTAGmsyWiT3HWeA+1PMEmV08/XpqoEUiVnL4QXhDM3bgOfRCWouIauJM1yBKFKds=
+deploy:
+  provider: heroku
+  api_key:
+    secure: a5FiP+bLTHkxaKz9qYjRrUcyMZ3U7n/Gckz4uylJgXNdoXhgSIbSyeosfoq5i9E78LfCBSwuUUoWEy7w8QwpJKuWGXmvIN0bKFlsnyjq71dgkbkeUusYy2V7o1lBqnMfENSF7xVLT4WuxQ8m7NvrwGT2iSprhEVHFe2dOrbqG9Y=
+  app:
+    master: stickr
+    develop: stickr-staging
+  on:
+    repo: YOwatari/Stickr
