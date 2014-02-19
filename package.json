@@ -58,6 +58,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "start": "NODE_ENV=production node dist/server.js"
   }
 }
