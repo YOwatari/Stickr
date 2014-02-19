@@ -5,6 +5,8 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
   - gem install sass compass
+after_success:
+  - grunt build
 notifications:
   email: false
   hipchat:
