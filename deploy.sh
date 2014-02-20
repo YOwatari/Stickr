@@ -16,7 +16,7 @@ then
   echo "   CheckHostIP no" >> ~/.ssh/config
   echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
   yes | heroku keys:add
-  yes | git add -A
+  yes | git add -f .
   yes | git commit -m "Deployment update" --allow-empty
   yes | git push heroku master
   heroku keys:remove `whoami`@`hostname`
@@ -32,7 +32,7 @@ then
   echo "   CheckHostIP no" >> ~/.ssh/config
   echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
   yes | heroku keys:add
-  yes | git add -A
+  yes | git add -f .
   yes | git commit -m "Deployment update" --allow-empty
   yes | git push heroku master
   heroku keys:remove `whoami`@`hostname`

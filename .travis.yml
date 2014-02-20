@@ -7,7 +7,6 @@ env:
   - GIT_COMMITTER_EMAIL="yyutao88@gmail.com"
   - GIT_AUTHOR_NAME="Yuta OHWATARI"
   - GIT_AUTHOR_EMAIL="yyutao88@gmail.com"
-  - secure: Yud/BwYFj7AeFYxVlKkoukGMgeDrt07IcOzZZjkx/j2wGnSaZgZChY3f8wJdjDsL4Ia8uN8YmNrwal5DnNJYPh4GgKky2rhjjosnpPBXWeBP/sEaMQNAHMEiX953Wl7avnREbqS2yPO+r0ZaEbhLoQSEftpHyFAZO/evlNWnJa4=
 branches:
   only:
     - master
@@ -17,8 +16,16 @@ before_script:
 - bower install
 - gem install sass compass
 after_success:
-- grunt build
-- sh deploy.sh
+- echo "SUCESS"
+deploy:
+  provider: heroku
+  api_key:
+    secure: Yud/BwYFj7AeFYxVlKkoukGMgeDrt07IcOzZZjkx/j2wGnSaZgZChY3f8wJdjDsL4Ia8uN8YmNrwal5DnNJYPh4GgKky2rhjjosnpPBXWeBP/sEaMQNAHMEiX953Wl7avnREbqS2yPO+r0ZaEbhLoQSEftpHyFAZO/evlNWnJa4=
+  app:
+    master: stickr
+    develop: stickr-staging
+  on:
+    repo: YOwatari/Stickr
 notifications:
   email: false
   hipchat:
