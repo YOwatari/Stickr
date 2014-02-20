@@ -1,6 +1,7 @@
 #!/bin/sh
 
-if [[ "$TRAVIS_BRANCH" == "master" ]] ; then
+if [ "$TRAVIS_BRANCH" == "master" ]
+then
   cd dist
   git init || true
   wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
@@ -16,7 +17,8 @@ if [[ "$TRAVIS_BRANCH" == "master" ]] ; then
   heroku restart
   heroku keys:remove `whoami`@`hostname`
   cd ..
-elif [[ "$TRAVIS_BRANCH" == "develop" ]] ; then
+elif [ "$TRAVIS_BRANCH" == "develop" ]
+then
   cd dist
   git init || true
   wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
