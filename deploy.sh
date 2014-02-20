@@ -14,9 +14,9 @@ then
   yes | git add -A
   yes | git commit -m "Deployment update" --allow-empty
   yes | git push heroku master
-  heroku restart
   heroku keys:remove `whoami`@`hostname`
   cd ..
+  heroku restart
 elif [ "$TRAVIS_BRANCH" == "develop" ]
 then
   cd dist
@@ -31,7 +31,7 @@ then
   yes | git add -A
   yes | git commit -m "Deployment update" --allow-empty
   yes | git push heroku master
-  heroku restart
   heroku keys:remove `whoami`@`hostname`
   cd ..
+  heroku restart
 fi
