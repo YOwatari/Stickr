@@ -5,7 +5,8 @@ then
   echo "This is a pull request. No deployment will be done."
   exit 0
 fi
-if [ "$TRAVIS_BRANCH" == master ];then
+if [ "$TRAVIS_BRANCH" = master ]
+then
   cd dist
   git init || true
   wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
@@ -20,7 +21,8 @@ if [ "$TRAVIS_BRANCH" == master ];then
   yes | git push heroku master
   heroku keys:remove `whoami`@`hostname`
   cd ..
-elif [ "$TRAVIS_BRANCH" == develop ];then
+elif [ "$TRAVIS_BRANCH" = develop ]
+then
   cd dist
   git init || true
   wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
