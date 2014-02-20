@@ -1,14 +1,12 @@
 language: node_js
 node_js:
-- '0.10'
+  - '0.10'
 before_script:
-- npm install -g bower grunt-cli
-- bower install
-- gem install sass compass
-script:
-- grunt test
+  - 'npm install -g bower grunt-cli'
+  - 'bower install'
+  - gem install sass compass
 after_success:
-- grunt build
+  - grunt build
 notifications:
   email: false
   hipchat:
@@ -25,5 +23,3 @@ deploy:
     develop: stickr-staging
   on:
     repo: YOwatari/Stickr
-  run:
-    - node dist/server.js
