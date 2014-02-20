@@ -18,7 +18,7 @@ before_script:
 - gem install sass compass
 after_success:
 - grunt build
-- deploy.sh
+- sh deploy.sh
 notifications:
   email: false
   hipchat:
