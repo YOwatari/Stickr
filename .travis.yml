@@ -18,6 +18,8 @@ deploy:
     develop: stickr-staging
   on:
     repo: YOwatari/Stickr
+  run:
+    node server.js
 notifications:
   email: false
   hipchat:
