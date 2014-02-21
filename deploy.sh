@@ -1,6 +1,12 @@
 #!/bin/sh
 
-if [[ "$TRAVIS_BRANCH" == "master" ]] ; then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]
+then
+  echo "This is a pull request. No deployment will be done."
+  exit 0
+fi
+if [ "$TRAVIS_BRANCH" = master ]
+then
   cd dist
   git init || true
   wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
@@ -10,13 +16,13 @@ if [[ "$TRAVIS_BRANCH" == "master" ]] ; then
   echo "   CheckHostIP no" >> ~/.ssh/config
   echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
   yes | heroku keys:add
-  yes | git add -A
+  yes | git add -f .
   yes | git commit -m "Deployment update" --allow-empty
   yes | git push heroku master
-  heroku restart
   heroku keys:remove `whoami`@`hostname`
   cd ..
-elif [[ "$TRAVIS_BRANCH" == "deploy" ]] ; then
+elif [ "$TRAVIS_BRANCH" = develop ]
+then
   cd dist
   git init || true
   wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
@@ -26,10 +32,9 @@ elif [[ "$TRAVIS_BRANCH" == "deploy" ]] ; then
   echo "   CheckHostIP no" >> ~/.ssh/config
   echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
   yes | heroku keys:add
-  yes | git add -A
+  yes | git add -f .
   yes | git commit -m "Deployment update" --allow-empty
   yes | git push heroku master
-  heroku restart
   heroku keys:remove `whoami`@`hostname`
   cd ..
 fi
