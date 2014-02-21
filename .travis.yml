@@ -1,29 +1,23 @@
 language: node_js
 node_js:
-- '0.10'
-env:
-  global:
-  - GIT_COMMITTER_NAME="Yuta OHWATARI"
-  - GIT_COMMITTER_EMAIL="yyutao88@gmail.com"
-  - GIT_AUTHOR_NAME="Yuta OHWATARI"
-  - GIT_AUTHOR_EMAIL="yyutao88@gmail.com"
+  - '0.10'
 branches:
   only:
-  - master
-  - develop
+    - master
+    - develop
 before_script:
-- npm install -g bower grunt-cli
-- bower install
-- gem install sass compass
+  - npm install -g bower grunt-cli
+  - bower install
+  - gem install sass compass
 after_success:
-- echo "SUCESS"
+  - grunt build
 deploy:
   provider: heroku
   api_key:
     secure: D5cO6WsT69T3jhfzozBM1xBduFKP0iU2uLj4lAryZEvYJIA1CbpF7qZ4jPblrSxQcJV19DHASB+8TsJXuYHp+dFEoUshqPSeg37WcSp1MlxJZcLvYriHl+fHaTzAqsYuf8WV3S6byiADm6Vz4Dz692GuCD0vbbifA4Xl2NMTehA=
   app:
-    master:stickr
-    develop:stickr-staging
+    master: stickr
+    develop: stickr-staging
   on:
     repo: YOwatari/Stickr
 notifications:
