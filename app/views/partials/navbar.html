@@ -1,3 +1,21 @@
 <div class="header" ng-controller="NavbarCtrl">
+    <ul class="nav nav-pills pull-right">
+        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+            <a ng-href="{{item.link}}">{{item.title}}</a>
+        </li>
+    </ul>
+
     <h3 class="text-muted"><img src="images/stickr_logo.png" height="60" alt="Stickr"</h3>
+
+    <span ng-repeat="item in phase" ng-if="editPageCheck()">
+        <span ng-if="boldCheck(item.link) === true">
+            <b>{{ $index+1 }}</b>
+        </span>
+        <span ng-if="boldCheck(item.link) === false">
+            {{ $index+1 }}
+        </span>
+        <span ng-if="$last !== true">
+            -
+        </span>
+    </span>
 </div>
