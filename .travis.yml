@@ -9,15 +9,15 @@ before_script:
   - npm install -g bower grunt-cli
   - bower install
   - gem install sass compass
-deploy:
-  provider: heroku
-  api_key:
-    secure: D5cO6WsT69T3jhfzozBM1xBduFKP0iU2uLj4lAryZEvYJIA1CbpF7qZ4jPblrSxQcJV19DHASB+8TsJXuYHp+dFEoUshqPSeg37WcSp1MlxJZcLvYriHl+fHaTzAqsYuf8WV3S6byiADm6Vz4Dz692GuCD0vbbifA4Xl2NMTehA=
-  app:
-    master: stickr
-    develop: stickr-staging
-  on:
-    repo: YOwatari/Stickr
+# deploy:
+#  provider: heroku
+#  api_key:
+#    secure: D5cO6WsT69T3jhfzozBM1xBduFKP0iU2uLj4lAryZEvYJIA1CbpF7qZ4jPblrSxQcJV19DHASB+8TsJXuYHp+dFEoUshqPSeg37WcSp1MlxJZcLvYriHl+fHaTzAqsYuf8WV3S6byiADm6Vz4Dz692GuCD0vbbifA4Xl2NMTehA=
+#  app:
+#    master: stickr
+#    develop: stickr-staging
+#  on:
+#    repo: YOwatari/Stickr
 notifications:
   email: false
   hipchat:
