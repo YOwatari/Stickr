@@ -67,6 +67,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         files: [
+          '<%= yeoman.app %>/views/{,*//*//*}*.{html,jade}',
           '<%= yeoman.app %>/views/{,*//*}*.{html,jade}',
           '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
@@ -281,11 +282,11 @@ module.exports = function (grunt) {
     },
 
     // Replace Google CDN references
-    //cdnify: {
-    //  dist: {
-    //    html: ['<%= yeoman.dist %>/views/*.html']
-    //  }
-    //},
+    cdnify: {
+      dist: {
+        html: ['<%= yeoman.dist %>/views/*.html']
+      }
+    },
 
     // Copies remaining files to places other tasks can use
     copy: {

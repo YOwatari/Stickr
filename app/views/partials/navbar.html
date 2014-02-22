@@ -1,3 +1,27 @@
 <div class="header" ng-controller="NavbarCtrl">
-    <h3 class="text-muted"><img src="images/stickr_logo.png" height="60" alt="Stickr"</h3>
+    <h3>
+        <a ng-href="/">
+            <img src="images/stickr_logo.png" height="60" alt="Stickr"/>
+        </a>
+    </h3>
+
+    <div ng-if="editPageCheck()" class="header_center">
+        <span ng-repeat="item in phase">
+            <span ng-if="boldCheck(item.link) === true">
+                <b>{{ $index+1 }}</b>
+            </span>
+            <span ng-if="boldCheck(item.link) === false">
+                {{ $index+1 }}
+            </span>
+            <span ng-if="$last !== true">
+                -
+            </span>
+        </span>
+    </div>
+
+    <div class="header_right">
+        <h3>
+            <a ng-repeat="item in page" ng-href="{{ item.link }}">{{ item.title }} </a>
+        </h3>
+    </div>
 </div>
