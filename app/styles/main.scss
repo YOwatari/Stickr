@@ -71,6 +71,7 @@ body {
 /* Add */
 .header {
     position: relative;
+    padding: 0 10px;
 }
 .header_center {
     left: 0;
@@ -87,6 +88,7 @@ body {
     width: 100%;
     padding-top: 19px;
     padding-bottom: 0;
+    padding-right: 10px;
 }
 
 .container {
@@ -96,5 +98,10 @@ body {
 
 body {
     padding: 10px 0px;
-    margin: 0px, 15px;    
+    margin: 0px, 15px;
+    height: 100%;
+}
+
+.footer {
+    text-align: center;
 }

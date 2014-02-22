@@ -21,6 +21,14 @@ angular.module('stickrApp')
       'link': '/edit/submit'
     }];
 
+    $scope.page = [{
+      'title': "edit",
+      'link': '/edit/select_tabletop'
+    }, {
+      'title': "tabletop",
+      'link': "/"
+    }];
+
     $scope.editPageCheck = function () {
       return $location.path().indexOf('edit') !== -1;
     }

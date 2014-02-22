@@ -1,7 +1,7 @@
 <div class="header" ng-controller="NavbarCtrl">
-    <h3 class="text-muted">
+    <h3>
         <a ng-href="/">
-            <img src="images/stickr_logo.png" height="60" alt="Stickr">
+            <img src="images/stickr_logo.png" height="60" alt="Stickr"/>
         </a>
     </h3>
 
@@ -20,8 +20,8 @@
     </div>
 
     <div class="header_right">
-        <h3 class="text-muted">
-            -
+        <h3>
+            <a ng-repeat="item in page" ng-href="{{ item.link }}">{{ item.title }} </a>
         </h3>
     </div>
 </div>
