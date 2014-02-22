@@ -25,6 +25,26 @@ angular.module('stickrApp', [
         controller: 'SettingsCtrl',
         authenticate: true
       })
+      .when('/edit/select_tabletop', {
+        templateUrl: 'partials/edit/select_tabletop',
+        controller: 'EditSeletctTabletopCtrl'
+      })
+      .when('/edit/select_sticker', {
+        templateUrl: 'partials/edit/select_sticker',
+        controller: 'EditSeletctStickerCtrl'
+      })
+      .when('/edit/put_sticker', {
+        templateUrl: 'partials/edit/put_sticker',
+        controller: 'EditPutStickerCtrl'
+      })
+      .when('/edit/submit', {
+        templateUrl: 'partials/edit/submit',
+        controller: 'EditSubmitCtrl'
+      })
+      .when('/tabletop', {
+        templateUrl: 'partials/tabletop',
+        controller: 'TabletopCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
