@@ -91,6 +91,51 @@ body {
     padding-right: 10px;
 }
 
+
+/* put_stiker */
+
+#area{
+    border: 10px solid #999;
+    cursor: crosshair;
+    margin-left: 5px;
+}
+
+#sidebar {
+    width: 180px;
+    min-height: 100%;
+    float: left;
+    background-color: #A0A0A0;
+}
+
+#steckeritems {
+    width: 170px;
+    min-height: 400px;
+    margin-left: 5px;
+    overflow:auto;
+    background-color: #FFFFFF;
+}
+
+#save{
+    font-size: 12pt;
+    width: 100px;
+    height: 30px;
+    background: -moz-linear-gradient(top, #fff, #e1e1e1 1%, #e1e1e1 50%, #cfcfcf 99%, #ccc);
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.01, #e1e1e1), color-stop(0.5, #e1e1e1), color-stop(0.99, #cfcfcf), to(#ccc));
+}
+
+#buttons{
+    text-align: center;
+}
+
+.thumbnail{
+    border: 2px solid #999;
+    margin-right: 5px;
+}
+
+.tableimage{
+    float: left;
+}
+
 .container {
     padding-top: 0px;
     width: 100%;
