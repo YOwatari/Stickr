@@ -69,9 +69,11 @@ module.exports = function (grunt) {
         files: [
           '<%= yeoman.app %>/views/{,*//*//*}*.{html,jade}',
           '<%= yeoman.app %>/views/{,*//*}*.{html,jade}',
+          '<%= yeoman.app %>/views/{,*//*//*}*.{html,jade}',
           '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
           '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
+          "<%= yeoman.app %>/views/partials/edit/serect_tabletop.html"
         ],
       
         options: {
@@ -282,11 +284,11 @@ module.exports = function (grunt) {
     },
 
     // Replace Google CDN references
-    cdnify: {
-      dist: {
-        html: ['<%= yeoman.dist %>/views/*.html']
-      }
-    },
+    //cdnify: {
+    //  dist: {
+    //    html: ['<%= yeoman.dist %>/views/*.html']
+//    }
+    //},
 
     // Copies remaining files to places other tasks can use
     copy: {
