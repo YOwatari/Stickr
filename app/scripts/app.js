@@ -26,19 +26,19 @@ angular.module('stickrApp', [
         authenticate: true
       })
       .when('/edit/select_tabletop', {
-        templateUrl: 'partials/edit/select_tabletop',
+        templateUrl: 'partials/select_tabletop',
         controller: 'EditSeletctTabletopCtrl'
       })
       .when('/edit/select_sticker', {
-        templateUrl: 'partials/edit/select_sticker',
+        templateUrl: 'partials/select_sticker',
         controller: 'EditSeletctStickerCtrl'
       })
       .when('/edit/put_sticker', {
-        templateUrl: 'partials/edit/put_sticker',
+        templateUrl: 'partials/put_sticker',
         controller: 'EditPutStickerCtrl'
       })
       .when('/edit/submit', {
-        templateUrl: 'partials/edit/submit',
+        templateUrl: 'partials/submit',
         controller: 'EditSubmitCtrl'
       })
       .when('/tabletop', {

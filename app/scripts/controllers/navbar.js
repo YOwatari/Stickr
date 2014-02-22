@@ -5,10 +5,37 @@ angular.module('stickrApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    }, {
-      'title': 'Settings',
-      'link': '/settings'
     }];
+
+    $scope.phase = [{
+      'title': "Select Tabletop",
+      'link': '/edit/select_tabletop'
+    }, {
+      'title': "Select Sticker",
+      'link': '/edit/select_sticker'
+    }, {
+      'title': "Put Sticker",
+      'link': '/edit/put_sticker'
+    }, {
+      'title': "Complete Tabletop",
+      'link': '/edit/submit'
+    }];
+
+    $scope.page = [{
+      'title': "edit",
+      'link': '/edit/select_tabletop'
+    }, {
+      'title': "tabletop",
+      'link': "/"
+    }];
+
+    $scope.editPageCheck = function () {
+      return $location.path().indexOf('edit') !== -1;
+    }
+
+    $scope.boldCheck = function (path) {
+      return path == $location.path();
+    };
     
     $scope.logout = function() {
       Auth.logout()

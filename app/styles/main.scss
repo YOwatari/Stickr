@@ -11,28 +11,29 @@ $icon-font-path: "/bower_components/bootstrap-sass/fonts/";
 
 /* Space out content a bit */
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
 .footer {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 0;
+    margin: 0;
 }
 
 /* Custom page header */
 .header {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 0px solid #e5e5e5;
 }
 
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
     margin-top: 0;
     margin-bottom: 0;
-    line-height: 40px;
+    line-height: 20px;
     padding-bottom: 19px;
 }
 
@@ -40,7 +41,7 @@ body {
 .footer {
     padding-top: 19px;
     color: #777;
-    border-top: 1px solid #e5e5e5;
+    border-top: 0px solid #e5e5e5;
 }
 
 .container-narrow > hr {
@@ -50,7 +51,7 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
     text-align: center;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 0px solid #e5e5e5;
 }
 
 .jumbotron .btn {
@@ -67,25 +68,40 @@ body {
     margin-top: 28px;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
+/* Add */
+.header {
+    position: relative;
+    padding: 0 10px;
+}
+.header_center {
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+.header_right {
+    left: 0;
+    position: absolute;
+    text-align: right;
+    top: 0;
+    width: 100%;
+    padding-top: 19px;
+    padding-bottom: 0;
+    padding-right: 10px;
+}
 
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
-    }
+.container {
+    padding-top: 0px;
+    width: 100%;
+}
+
+body {
+    padding: 10px 0px;
+    margin: 0px, 15px;
+    height: 100%;
+}
+
+.footer {
+    text-align: center;
 }
