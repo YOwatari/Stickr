@@ -183,8 +183,8 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                             sticker.angle = (kakudo(currentX-lastX,currentY-lastY))%360;
                         } else if (moveClicked) {
                             // 現在、選択中の画像をクリックしている場合
-                            sticker.x = currentX-sticker.width/2;
-                            sticker.y = currentY-sticker.height/2;
+                            sticker.x = currentX-sticker.img.width/2;
+                            sticker.y = currentY-sticker.img.height/2;
                         }
                     }
                 });
@@ -214,8 +214,8 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                             nowSelected = false;    
                         } else if(moveClicked) {
                             // 現在、選択中の画像をクリックしている場合
-                            sticker.x = currentX-sticker.width/2;
-                            sticker.y = currentY-sticker.height/2;
+                            sticker.x = currentX-sticker.img.width/2;
+                            sticker.y = currentY-sticker.img.height/2;
                             sticker.selected = false;
                             nowSelected = false;    
                         }
@@ -252,7 +252,7 @@ angular.module('stickrApp').directive('canvasWatch', function () {
             function CanvasDraw (stickers) {
                 var ctx = element[0].getContext('2d');
 
-                ctx.clearRect(0, 0, width, height);
+                ctx.clearRect(0, 0, element[0].width, element[0].height);
 
                 stickers.forEach(function (sticker, i) {
                     if (!sticker.ready) {
