@@ -4,30 +4,391 @@ angular.module('stickrApp').controller('EditPutStickerCtrl', function ($scope, $
     $http.get('/api/awesomeThings').success(function (awesomeThings) {
         $scope.awesomeThings = awesomeThings;
 
+        $scope.imgTabletop = [{
+            'src': 'images/tabletop/Mac_11in.png',
+            'width': 800,
+            'height': 450
+        }];
+
+        $scope.backTabletop = [{
+            'ref': $scope.imgTabletop[0],
+            'x': 0,
+            'y': 0,
+            'angle': 0,
+            'depth': 0
+        }];
+
         $scope.imgStickers = [
         {
-            'src': 'images/stickr_logo_small.png',
+            'src': 'images/sticker/stickr_logo.png',
             'width': 80,
             'height': 80
-        }];
+        },
+        {    
+            'src': 'images/sticker/adobe_dreamweaver.png',
+            'width': 100,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/adove_ai.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/adove_fl.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/adove_ps.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/akatsuki.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/chatworks.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/colo_01.png.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/colo_c.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/ConoHa.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/corabbit.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/css3.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/DMTC.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/donuts_logo.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/drecom_hentai.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/drecom.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/gaiax.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/generace.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/github.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/gloops.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/h1_logo.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/herlock_02.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/herlock.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/html5.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/IMG_3195.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/img_ss_hamee.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/javascript.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/klanb_games.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/leve_b.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/leve_w.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/logo_klab.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/logo_ver4.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/mercari.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/oisix.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/oro.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/platform_01.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/pyfes.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/riak_001.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/riak_003.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/riak_004.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/usagee.png.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/wakame.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/wordpress_logo_b.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/wordpress_logo.png',
+            'width': 80,
+            'height': 80
+        },
+        {
+            'src': 'images/sticker/yeoman.png',
+            'width': 80,
+            'height': 80
+        }
+        ];
 
         $scope.putStickers = [
         {
-            'ref': $scope.imgStickers[0],
+            'ref': $scope.imgStickers[40],
             'x': 10,
             'y': 10,
             'angle': 0,
             'depth': 0
         }, {
-            'ref': $scope.imgStickers[0],
+            'ref': $scope.imgStickers[1],
             'x': 100,
-            'y': 100,
+            'y': 10,
             'angle': 0,
             'depth': 0
         }, {
-            'ref': $scope.imgStickers[0],
+            'ref': $scope.imgStickers[2],
             'x': 200,
-            'y': 200,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[3],
+            'x': 10,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[4],
+            'x': 100,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[5],
+            'x': 200,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[6],
+            'x': 10,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[7],
+            'x': 100,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[8],
+            'x': 200,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[9],
+            'x': 10,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[10],
+            'x': 100,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[11],
+            'x': 200,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[12],
+            'x': 10,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[13],
+            'x': 100,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[14],
+            'x': 200,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[15],
+            'x': 10,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[16],
+            'x': 100,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[17],
+            'x': 200,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[18],
+            'x': 10,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[19],
+            'x': 100,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[20],
+            'x': 200,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[21],
+            'x': 10,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[22],
+            'x': 100,
+            'y': 10,
+            'angle': 0,
+            'depth': 0
+        }, {
+            'ref': $scope.imgStickers[23],
+            'x': 200,
+            'y': 10,
             'angle': 0,
             'depth': 0
         }];
@@ -57,13 +418,14 @@ angular.module('stickrApp').directive('canvasWatch', function () {
 
             var width = angular.element(self).attr('width');
             var height = angular.element(self).attr('height');
-            var stickers;
+            var stickers, b_tabletop;
 
             scope.$on('success', function (){
                 console.log('aaa');
                 console.log(scope);
                 console.log(scope.putStickers);
-                stickers = load_stickers(scope.putStickers);                
+                stickers = load_stickers(scope.putStickers);
+                b_tabletop = load_stickers(scope.backTabletop);
             });
 
             function load_stickers (pStickers) {
@@ -183,8 +545,8 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                             sticker.angle = (kakudo(currentX-lastX,currentY-lastY))%360;
                         } else if (moveClicked) {
                             // 現在、選択中の画像をクリックしている場合
-                            sticker.x = currentX-sticker.width/2;
-                            sticker.y = currentY-sticker.height/2;
+                            sticker.x = currentX-sticker.img.width/2;
+                            sticker.y = currentY-sticker.img.height/2;
                         }
                     }
                 });
@@ -214,8 +576,8 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                             nowSelected = false;    
                         } else if(moveClicked) {
                             // 現在、選択中の画像をクリックしている場合
-                            sticker.x = currentX-sticker.width/2;
-                            sticker.y = currentY-sticker.height/2;
+                            sticker.x = currentX-sticker.img.width/2;
+                            sticker.y = currentY-sticker.img.height/2;
                             sticker.selected = false;
                             nowSelected = false;    
                         }
@@ -250,9 +612,24 @@ angular.module('stickrApp').directive('canvasWatch', function () {
 
             // 描画
             function CanvasDraw (stickers) {
+                //stickers.reverse();
                 var ctx = element[0].getContext('2d');
 
-                ctx.clearRect(0, 0, width, height);
+                ctx.clearRect(0, 0, element[0].width, element[0].height);
+
+                var rad = b_tabletop[0].angle * Math.PI / 180; //ラジアン角;
+                //canvasの状態を一旦保存
+                ctx.save();
+                //画像の縦横半分の位置へtranslate
+                ctx.translate((b_tabletop[0].x+400), (b_tabletop[0].y+225));
+                //変形マトリックスに回転を適用
+                ctx.rotate(rad);
+                //translateした分戻して原点を0，0に
+                ctx.translate( -1 * (b_tabletop[0].x+400), -1 *(b_tabletop[0].y+225));
+                // 以下画像の読み込みが完了しているなら
+                ctx.drawImage(b_tabletop[0].img, b_tabletop[0].x, b_tabletop[0].y, 800, 450);
+                //canvasの状態を元に戻す
+                ctx.restore();
 
                 stickers.forEach(function (sticker, i) {
                     if (!sticker.ready) {

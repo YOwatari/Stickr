@@ -22,10 +22,7 @@ angular.module('stickrApp')
     }];
 
     $scope.page = [{
-      'title': "edit",
-      'link': '/edit/select_tabletop'
-    }, {
-      'title': "tabletop",
+      'title': "home",
       'link': "/"
     }];
 
