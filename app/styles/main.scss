@@ -52,6 +52,11 @@ body {
 .jumbotron {
     text-align: center;
     border-bottom: 0px solid #e5e5e5;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 15px;
 }
 
 .jumbotron .btn {
@@ -149,4 +154,6 @@ body {
 
 .footer {
     text-align: center;
+    padding: 0;
+    margin: 0;
 }
