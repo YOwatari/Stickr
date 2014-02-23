@@ -1,1 +1,33 @@
-<p>This is the edit/put_sticker view.</p>
+<div ng-include="'partials/navbar'"></div>
+
+<div class="jumbotron">
+    <div id="sidebar">
+        <!--ロゴイメージの表示-->
+        <img src="images/stickr_logo.png" alt="logo" width="180px">
+        <!--画面イメージの選択-->
+        <select id="backgroundSize">
+            <option value="inch11">Mac11インチ</option>
+            <option value="inch13">Mac13インチ</option>
+            <option value="inch15">Mac15インチ</option>
+        </select>
+        <!--ステッカー一覧画面　-->
+        <div id="steckeritems">
+            <!-- ステッカー画像 -->
+            <img ng-repeat="item in imgStickers" src="{{ item.src }}" width="{{ item.width }}" height="{{ item.height }}">
+        </div>
+        <div id="buttons">
+            <input type="button" id="save" value="SAVE">
+        </div>
+    </div>
+    <div>
+        <canvas width="800" height="450" id="area" canvas-watch>
+            Canbasに対応したブラウザを用意してください。
+        </canvas>
+        <div id="garllery">
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+  BananaChoco @ DMTC x Microsoft
+</div>

@@ -1,7 +1,128 @@
-<div ng-include="'partials/navbar'"></div>
+<!DOCTYPE HTML>
+<html lang= "ja">
 
-<div class="jumbotron">
-  <p class="lead">
-    <p>This is the edit/seletct_tabletop view.</p>
-  </p>
-</div>
+    <head>
+        <meta http-equiv= "Content-Type" content= "text/html"; charset= "utf-8">
+        <meta http-equiv="content-script-type" content="text/javascript">
+        <script type="text/javascript" src="js/jquery-1.2.6.min.js"></script>
+        <link rel= "stylesheet" tyoe= "text/css" href= "../../styles/select_tabletop.css"/> 
+        <title>select_tabletop</title>
+    </head>
+
+    <body class= "clear-type">
+        <header>
+            <div id= "logo"><!-- logo貼り付け -->
+                <a href= "">
+                    <img src= "../../images/logo_ver4.png" alt= "Stickr" title= "Stickr">
+                </a>
+            </div>
+            <div id= "page" ><!--ページ移項-->
+                <h1>1-2</h1>
+                <br>
+                <p>
+                    実際にステッカーを貼りたいデバイスのサイズを選んでください。
+                </p>
+            </div>
+        </header>
+        <div class= "clear"><hr/></div><!--floatクリア-->
+        <nav>
+            <ul class= "sideMenu">
+        </nav>
+        <section>
+            <!-- 天板選択 -->
+            <div id= "scroll_bar">
+            <article class= "clear-type">
+                <!--画像一覧/Mac製品のみ-->
+                <div class= "l1 left" id= "tabletop">
+                    <p>
+                        <a href= "">
+                            <img id= "iPad" src= "../../images/iPadmini_7in.png" alt= "Mac_7in" title= "7in">
+                        </a>
+                    </p>
+                    <a href= "">
+                        iPad mini
+                        <br>
+                        [7in]
+                    </a>
+                </div>
+                <div class= "l1 center" id= "tabletop">
+                    <p>
+                        <a href= "">
+                            <img id= "iPad" src= "../../images/iPad_9in.png" alt= "Mac_9in" title= "9in">
+                        </a>
+                    </p>
+                    <a href= "">
+                        iPad
+                        <br>
+                        [9in]
+                    </a>
+                </div>
+                <div class= "l1 right" id= "tabletop">
+                    <p>
+                        <a href= "">
+                            <img id= "Mac" src= "../../images/Mac_11in.png" alt= "11in" title= "Mac_11in">
+                        </a>
+                    </p>
+                    <a href= "">
+                        MacBook Air/Pro
+                        <br>
+                        [11in]
+                    </a>
+                </div>
+                <br>
+                <div class= "l2 left" id= "tabletop">
+                    <p>
+                        <a href= "">
+                            <img id= "Mac" src= "../../images/Mac_13in.png" alt= "13in" title= "Mac_13in">
+                        </a>
+                    </p>
+                    <a href= "">
+                        MacBook Air/Pro
+                        <br>
+                        [13in]
+                    </a>
+                </div>
+                <div class= "l2 center" id= "tabletop">
+                    <p>
+                        <a href= "">
+                            <img id="Mac" src="../../images/Mac_15in.png" alt="11in" title="Mac_15in">
+                        </a>
+                    </p>
+                    <a href= "">
+                        MacBook Pro
+                        <br>
+                        [15in]
+                    </a>
+                </div>
+                <div class= "l2 right" id= "tabletop">
+                    <p>
+                        <a href= "">
+                            <img id="Mac" src="../../images/Mac_17in.png" alt="17in" title="Mac_17in">
+                        </a>
+                    </p>
+                    <a href= "">
+                        MacBook Pro
+                        <br>
+                        [17in]
+                    </a>
+                </div>
+            </article>
+        </div>
+        <div class="clear"><hr/></div><!--floatクリア-->
+    </section>
+        <script type="text/javascript"><!--// 特定の画像だけにスポットをあてる
+        $("#photoIndex img").hover(
+        function(){   // マウスオーバー
+            $("#photoIndex img").fadeTo(0.1, 0.25);
+            $(this).fadeTo(0.1, 1);
+        },
+        function(){   // マウスアウト
+            $("#photoIndex img").fadeTo(0.1, 1);
+        }
+        );
+        // -->
+        </script>
+    </body>
+    <footer>
+    </footer>
+</html>
