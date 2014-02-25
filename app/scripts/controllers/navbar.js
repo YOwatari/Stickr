@@ -8,22 +8,22 @@ angular.module('stickrApp')
     }];
 
     $scope.phase = [{
-      'title': "Select Tabletop",
+      'title': 'Select Tabletop',
       'link': '/edit/select_tabletop'
     }, {
-      'title': "Select Sticker",
+      'title': 'Select Sticker',
       'link': '/edit/select_sticker'
     }, {
-      'title': "Put Sticker",
+      'title': 'Put Sticker',
       'link': '/edit/put_sticker'
     }, {
-      'title': "Complete Tabletop",
+      'title': 'Complete Tabletop',
       'link': '/edit/submit'
     }];
 
     $scope.page = [{
-      'title': "home",
-      'link': "/"
+      'title': 'home',
+      'link': '/'
     }];
 
     $scope.editPageCheck = function () {
@@ -31,7 +31,7 @@ angular.module('stickrApp')
     };
 
     $scope.boldCheck = function (path) {
-      return path == $location.path();
+      return path === $location.path();
     };
     
     $scope.logout = function() {
