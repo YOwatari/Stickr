@@ -1,5 +1,7 @@
 'use strict';
 
+var stickers;
+
 angular.module('stickrApp').controller('EditPutStickerCtrl', function ($scope, $http) {
     $http.get('/api/awesomeThings').success(function (awesomeThings) {
         $scope.awesomeThings = awesomeThings;
@@ -256,7 +258,6 @@ angular.module('stickrApp').controller('EditPutStickerCtrl', function ($scope, $
 
         $scope.selectStickr = function (index) {
             console.log("select");
-            console.log($scope.putStickers);
             $scope.putStickers.push({
                 'ref': $scope.imgStickers[index],
                 'x': 100,
@@ -264,6 +265,19 @@ angular.module('stickrApp').controller('EditPutStickerCtrl', function ($scope, $
                 'depth': 0,
                 'angle': 0
             });
+
+            stickers.push($scope.putStickers[$scope.putStickers.length - 1]);
+
+            var idx = stickers.length - 1;
+
+            stickers[idx].ready = false;
+            stickers[idx].selected = false;
+
+            stickers[idx].img = new Image();
+            stickers[idx].img.src = stickers[idx].ref.src;
+            stickers[idx].img.onload = function () {
+                stickers[idx].ready = true;
+            };
         };
 
         $scope.$emit('success');
@@ -291,14 +305,43 @@ angular.module('stickrApp').directive('canvasWatch', function () {
 
             var width = angular.element(self).attr('width');
             var height = angular.element(self).attr('height');
-            var stickers, b_tabletop;
+            var b_tabletop;
+
+            var FPS = function (target) {
+                this.target = target;
+                this.interval = 1000 / target;
+                this.checkpoint = new Date();
+                this.fps = 0;
+            };
+            FPS.prototype = {
+                check: function () {
+                    // fps計算
+                    var now = new Date();
+                    this.fps = 1000 / (now - this.checkpoint);
+                    this.checkpoint = new Date();
+                },
+                getFPS: function() {
+                    // fps取得
+                    return this.fps.toFixed(2);
+                },
+                getInterval: function () {
+                    // インターバル取得
+                    var elapsed = new Date() - this.checkpoint;
+                    return this.interval - elapsed > 10 ? this.interval - elapsed : 10;
+                }
+            };
+            var fps = new FPS(30);
+
+            function loop () {
+                fps.check();
+                CanvasDraw(stickers);
+                setTimeout(loop, fps.getInterval());
+            };
 
             scope.$on('success', function (){
-                console.log('aaa');
-                console.log(scope);
-                console.log(scope.putStickers);
                 stickers = load_stickers(scope.putStickers);
                 b_tabletop = load_stickers(scope.backTabletop);
+                loop();
             });
 
             function load_stickers (pStickers) {
@@ -313,7 +356,7 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                     });
 
                     tmp_stickers.forEach(function (tmp_sticker) {
-                        tmp_sticker.ready = true;
+                        tmp_sticker.ready = false;
                         tmp_sticker.selected = false;
 
                         tmp_sticker.img = new Image();
@@ -323,7 +366,7 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                         };
                     });
                 return tmp_stickers;
-            };          
+            };
 
             function contain (sticker, x, y) {
                 // 点が含まれているのかを判定
@@ -398,7 +441,7 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                     nowSelected = false;
                 }
 
-                CanvasDraw(stickers);
+                //CanvasDraw(stickers);
             });
 
             element.bind('mousemove', function (event) {
@@ -427,7 +470,7 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                 //lastX = currentX;
                 //lastY = currentY;
 
-                CanvasDraw(stickers);
+                //CanvasDraw(stickers);
             });
 
             element.bind('mouseup', function (event) {
@@ -460,7 +503,7 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                 lastX = currentX;
                 lastY = currentY;
 
-                CanvasDraw(stickers);
+                //CanvasDraw(stickers);
             });
 
             function kakudo (x, y) {
