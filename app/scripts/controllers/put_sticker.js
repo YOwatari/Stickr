@@ -6,8 +6,8 @@ angular.module('stickrApp').controller('EditPutStickerCtrl', function ($scope, $
 
         $scope.imgTabletop = [{
             'src': 'images/tabletop/Mac_11in.png',
-            'width': 800,
-            'height': 450
+            'width': 900,
+            'height': 576
         }];
 
         $scope.backTabletop = [{
@@ -55,7 +55,7 @@ angular.module('stickrApp').controller('EditPutStickerCtrl', function ($scope, $
             'height': 80
         },
         {
-            'src': 'images/sticker/colo_01.png.png',
+            'src': 'images/sticker/colo_01.png',
             'width': 80,
             'height': 80
         },
@@ -220,7 +220,7 @@ angular.module('stickrApp').controller('EditPutStickerCtrl', function ($scope, $
             'height': 80
         },
         {
-            'src': 'images/sticker/usagee.png.png',
+            'src': 'images/sticker/usagee.png',
             'width': 80,
             'height': 80
         },
@@ -246,152 +246,25 @@ angular.module('stickrApp').controller('EditPutStickerCtrl', function ($scope, $
         }
         ];
 
-        $scope.putStickers = [
-        {
-            'ref': $scope.imgStickers[40],
-            'x': 10,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[1],
-            'x': 100,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[2],
-            'x': 200,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[3],
-            'x': 10,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[4],
-            'x': 100,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[5],
-            'x': 200,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[6],
-            'x': 10,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[7],
-            'x': 100,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[8],
-            'x': 200,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[9],
-            'x': 10,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[10],
-            'x': 100,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[11],
-            'x': 200,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
+        $scope.putStickers = [{
             'ref': $scope.imgStickers[12],
-            'x': 10,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[13],
-            'x': 100,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[14],
-            'x': 200,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[15],
-            'x': 10,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[16],
-            'x': 100,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[17],
-            'x': 200,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[18],
-            'x': 10,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[19],
-            'x': 100,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[20],
-            'x': 200,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[21],
-            'x': 10,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[22],
-            'x': 100,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
-        }, {
-            'ref': $scope.imgStickers[23],
-            'x': 200,
-            'y': 10,
-            'angle': 0,
-            'depth': 0
+            'x': 80,
+            'y': 80,
+            'depth': 0,
+            'angle': 0
         }];
+
+        $scope.selectStickr = function (index) {
+            console.log("select");
+            console.log($scope.putStickers);
+            $scope.putStickers.push({
+                'ref': $scope.imgStickers[index],
+                'x': 100,
+                'y': 100,
+                'depth': 0,
+                'angle': 0
+            });
+        };
 
         $scope.$emit('success');
     });
@@ -551,8 +424,8 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                     }
                 });
 
-                lastX = currentX;
-                lastY = currentY;
+                //lastX = currentX;
+                //lastY = currentY;
 
                 CanvasDraw(stickers);
             });
@@ -611,8 +484,8 @@ angular.module('stickrApp').directive('canvasWatch', function () {
             };
 
             // 描画
-            function CanvasDraw (stickers) {
-                //stickers.reverse();
+            function CanvasDraw (tmp) {
+                var stickers = tmp;
                 var ctx = element[0].getContext('2d');
 
                 ctx.clearRect(0, 0, element[0].width, element[0].height);
@@ -627,7 +500,7 @@ angular.module('stickrApp').directive('canvasWatch', function () {
                 //translateした分戻して原点を0，0に
                 ctx.translate( -1 * (b_tabletop[0].x+400), -1 *(b_tabletop[0].y+225));
                 // 以下画像の読み込みが完了しているなら
-                ctx.drawImage(b_tabletop[0].img, b_tabletop[0].x, b_tabletop[0].y, 800, 450);
+                ctx.drawImage(b_tabletop[0].img, b_tabletop[0].x, b_tabletop[0].y, element[0].width, element[0].height);
                 //canvasの状態を元に戻す
                 ctx.restore();
 

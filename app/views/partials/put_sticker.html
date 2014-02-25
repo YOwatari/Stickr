@@ -13,14 +13,14 @@
         <!--ステッカー一覧画面　-->
         <div id="steckeritems">
             <!-- ステッカー画像 -->
-            <img ng-repeat="item in imgStickers" src="{{ item.src }}" width="{{ item.width }}" height="{{ item.height }}">
+            <img ng-repeat="item in imgStickers" src="{{ item.src }}" width="{{ item.width }}" height="{{ item.height }}" ng-click="selectStickr($index)">
         </div>
         <div id="buttons">
             <input type="button" id="save" value="SAVE">
         </div>
     </div>
     <div>
-        <canvas width="800" height="450" id="area" canvas-watch>
+        <canvas width="{{ imgTabletop[0].width }}" height="{{ imgTabletop[0].height }}" id="area" canvas-watch>
             Canbasに対応したブラウザを用意してください。
         </canvas>
         <div id="garllery">

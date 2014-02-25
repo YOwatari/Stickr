@@ -28,7 +28,7 @@ angular.module('stickrApp')
 
     $scope.editPageCheck = function () {
       return $location.path().indexOf('edit') !== -1;
-    }
+    };
 
     $scope.boldCheck = function (path) {
       return path == $location.path();
