@@ -551,7 +551,7 @@ angular.module('stickrApp')
                 //translateした分戻して原点を0，0に
                 ctx.translate( -1 * (bTabletop[0].x+400), -1 *(bTabletop[0].y+225));
                 // 以下画像の読み込みが完了しているなら
-                ctx.drawImage(bTabletop[0].img, bTabletop[0].x, bTabletop[0].y, width, height);
+                ctx.drawImage(bTabletop[0].img, bTabletop[0].x, bTabletop[0].y, bTabletop[0].ref.width, bTabletop[0].ref.height);
                 //canvasの状態を元に戻す
                 ctx.restore();
 
