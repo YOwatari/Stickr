@@ -1,6 +1,8 @@
 'use strict';
 
+
 var stickers;
+
 
 angular.module('stickrApp')
   .controller('EditPutStickerCtrl', function ($scope, $http) {
@@ -8,11 +10,10 @@ angular.module('stickrApp')
         $scope.awesomeThings = awesomeThings;
 
         $scope.imgTabletop = [{
-            'src': 'images/tabletop/Mac_11in.png',
+            'src': 'images/tabletop/Mac_11inB.png',
             'width': 900,
             'height': 576
           }];
-
         $scope.backTabletop = [{
             'ref': $scope.imgTabletop[0],
             'x': 0,
@@ -24,12 +25,12 @@ angular.module('stickrApp')
         $scope.imgStickers = [
           {
             'src': 'images/sticker/stickr_logo.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
             'src': 'images/sticker/adobe_dreamweaver.png',
-            'width': 100,
+            'width': 80,
             'height': 80
           },
           {
@@ -53,13 +54,13 @@ angular.module('stickrApp')
             'height': 80
           },
           {
-            'src': 'images/sticker/chatworks.png',
+            'src': 'images/sticker/colo_01.png',
             'width': 80,
             'height': 80
           },
           {
-            'src': 'images/sticker/colo_01.png',
-            'width': 80,
+            'src': 'images/sticker/chatworks.png',
+            'width': 160,
             'height': 80
           },
           {
@@ -88,28 +89,38 @@ angular.module('stickrApp')
             'height': 80
           },
           {
-            'src': 'images/sticker/donuts_logo.png',
+            'src': 'images/sticker/generace.png',
             'width': 80,
+            'height': 80
+          },
+          {
+            'src': 'images/sticker/donuts_logo.png',
+            'width': 160,
             'height': 80
           },
           {
             'src': 'images/sticker/drecom_hentai.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
             'src': 'images/sticker/drecom.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
             'src': 'images/sticker/gaiax.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
-            'src': 'images/sticker/generace.png',
-            'width': 80,
+            'src': 'images/sticker/gloops.png',
+            'width': 160,
+            'height': 80
+          },
+          {
+            'src': 'images/sticker/h1_logo.png',
+            'width': 160,
             'height': 80
           },
           {
@@ -118,23 +129,18 @@ angular.module('stickrApp')
             'height': 80
           },
           {
-            'src': 'images/sticker/gloops.png',
-            'width': 80,
-            'height': 80
-          },
-          {
-            'src': 'images/sticker/h1_logo.png',
+            'src': 'images/sticker/oro.png',
             'width': 80,
             'height': 80
           },
           {
             'src': 'images/sticker/herlock_02.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
             'src': 'images/sticker/herlock.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
@@ -159,17 +165,17 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/klanb_games.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
             'src': 'images/sticker/leve_b.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
             'src': 'images/sticker/leve_w.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
@@ -179,7 +185,7 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/logo_ver4.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
@@ -193,17 +199,17 @@ angular.module('stickrApp')
             'height': 80
           },
           {
-            'src': 'images/sticker/oro.png',
-            'width': 80,
-            'height': 80
-          },
-          {
             'src': 'images/sticker/platform_01.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
             'src': 'images/sticker/pyfes.png',
+            'width': 80,
+            'height': 80
+          },
+          {
+            'src': 'images/sticker/yeoman.png',
             'width': 80,
             'height': 80
           },
@@ -219,7 +225,7 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/riak_004.png',
-            'width': 80,
+            'width': 160,
             'height': 80
           },
           {
@@ -241,26 +247,21 @@ angular.module('stickrApp')
             'src': 'images/sticker/wordpress_logo.png',
             'width': 80,
             'height': 80
-          },
-          {
-            'src': 'images/sticker/yeoman.png',
-            'width': 80,
-            'height': 80
           }
         ];
 
         $scope.putStickers = [
           {
-            'ref': $scope.imgStickers[12],
-            'x': 80,
-            'y': 80,
+            'ref': $scope.imgStickers[0],
+            'x': -200,
+            'y': -200,
             'depth': 0,
             'angle': 0
           }
         ];
 
         $scope.selectStickr = function (index) {
-            console.log('select');
+            console.log('select:'+index);
             $scope.putStickers.push(
               {
                 'ref': $scope.imgStickers[index],
@@ -297,18 +298,22 @@ angular.module('stickrApp')
         restrict: 'A',
         link: function (scope, element) {
             var ctx = element[0].getContext('2d');
-
             // タップ位置
             var lastX = 0;
             var lastY = 0;
             var currentX = 0;
             var currentY = 0;
+            //定数　ステッカーの選択状態を表す
+            var NonClicked = -1;
+            var OneClicked = 0;
+            var MoveClicked = 1;
+            var RotateClicked = 2;
+            var OrderClicked = 3;
+            var clickedType = NonClicked; //クリックされた種類を保存
 
-            var nowSelected = false;   // どれか2回めの選択がされているか
-            var anySelected = false;   // 一つでもクリックされているか
-            var moveClicked = false;   // 移動用にクリックをしているか
-            var rotateClicked = false; // 回転用にクリックをしているか
-
+            var imagePowerWidth = 1.0;//画像の縮尺幅
+            var imagePowerHeight = 1.0;//画像の縮尺高さ
+            
             var width = angular.element(ctx).attr('width');
             var height = angular.element(ctx).attr('height');
             var bTabletop;
@@ -318,25 +323,25 @@ angular.module('stickrApp')
                 this.interval = 1000 / target;
                 this.checkpoint = new Date();
                 this.fps = 0;
-              };
-
+            };
             FPS.prototype = {
                 check: function () {
                     // fps計算
                     var now = new Date();
                     this.fps = 1000 / (now - this.checkpoint);
-                    this.checkpoint = new Date();
-                  },
+                    //this.checkpoint = new Date();
+                    this.checkpoint = now;
+                },
                 getFPS: function() {
                     // fps取得
                     return this.fps.toFixed(2);
-                  },
+                },
                 getInterval: function () {
                     // インターバル取得
                     var elapsed = new Date() - this.checkpoint;
                     return this.interval - elapsed > 10 ? this.interval - elapsed : 10;
-                  }
-              };
+                }
+            };
 
             var fps = new FPS(30);
 
@@ -344,63 +349,88 @@ angular.module('stickrApp')
                 fps.check();
                 new CanvasDraw(stickers);
                 setTimeout(loop, fps.getInterval());
-              }
+            }
 
             scope.$on('success', function () {
                 stickers = loadStickers(scope.putStickers);
                 bTabletop = loadStickers(scope.backTabletop);
                 loop();
-              });
+            });
 
             function loadStickers (pStickers) {
-                    var tmpStickers = [];
+                var tmpStickers = [];
 
-                    if (pStickers === undefined || pStickers === null) {
-                      return;
-                    }
+                if (pStickers === undefined || pStickers === null) {
+                    return;
+                }
+                pStickers.forEach(function (pSticker) {
+                    tmpStickers.push(pSticker);
+                });
+                tmpStickers.forEach(function (tmpSticker) {
+                    tmpSticker.ready = false;
+                    tmpSticker.selected = false;
 
-                    pStickers.forEach(function (pSticker) {
-                        tmpStickers.push(pSticker);
-                      });
-
-                    tmpStickers.forEach(function (tmpSticker) {
-                        tmpSticker.ready = false;
-                        tmpSticker.selected = false;
-
-                        tmpSticker.img = new Image();
-                        tmpSticker.img.src = tmpSticker.ref.src;
-                        tmpSticker.img.onLoad = function () {
-                            tmpSticker.ready = true;
-                          };
-                      });
-                    return tmpStickers;
-                  }
+                    tmpSticker.img = new Image();
+                    tmpSticker.img.src = tmpSticker.ref.src;
+                    tmpSticker.img.onLoad = function () {
+                        tmpSticker.ready = true;
+                    };
+                });
+                return tmpStickers;
+            }
 
             function contain (sticker, x, y) {
+                var rad = sticker.angle * Math.PI / 180; //ラジアン角;
+                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
+                var coordinateX2 = sticker.img.height/2*Math.sin(rad);
+                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
+                var coordinateY2 = sticker.img.height/2*Math.cos(rad);
+
+                var lx = -coordinateX1-coordinateX2+sticker.x+sticker.img.width/2;
+                var rx = coordinateX1+coordinateX2+sticker.x+sticker.img.width/2;
+                var uy = -coordinateY1+coordinateY2+sticker.y+sticker.img.height/2;
+                var by = coordinateY1-coordinateY2+sticker.y+sticker.img.height/2;
                 // 点が含まれているのかを判定
-                if(x >= sticker.x && x <= sticker.x+sticker.img.width) {
-                  if(y>=sticker.y && y<=sticker.y+sticker.img.height) {
+
+                if(x >= Math.min(lx,rx) && x <= Math.max(lx,rx)) {
+                  if(y >= Math.min(uy,by) && y <= Math.max(uy,by)) {
                     return true;
                   }
                 }
                 return false;
-              }
+            }
 
             function containRotate (sticker, x, y){
                 var rad = sticker.angle / 180 * Math.PI;
                 var r = 20;
-                var tmpX = sticker.img.width/2*Math.cos(rad)+sticker.x+sticker.img.width/2,
-                    tmpY = sticker.img.width/2*Math.sin(rad)+sticker.y+sticker.img.height/2;
+                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
+                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
+                
+                var centerX = coordinateX1+sticker.x+sticker.img.width/2,
+                    centerY = coordinateY1+sticker.y+sticker.img.height/2;
                 // 点が右横の円に含まれているのかを判定
-                if((Math.pow(Math.abs(tmpX-x),2)+Math.pow(Math.abs(tmpY-y),2)) <= Math.pow(r,2)){
-                  return true;
+                if((Math.pow(Math.abs(centerX-x),2)+Math.pow(Math.abs(centerY-y),2)) <= Math.pow(r,2)){
+                    return true;
                 }
                 return false;
               }
 
+            function containOrder (sticker, x, y){
+                var rad = sticker.angle / 180 * Math.PI;
+                var r = 20;
+                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
+                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
+                var centerX = -coordinateX1+sticker.x+sticker.img.width/2,
+                    centerY = -coordinateY1+sticker.y+sticker.img.height/2;
+                // 点が右横の円に含まれているのかを判定
+                if((Math.pow(Math.abs(centerX-x),2)+Math.pow(Math.abs(centerY-y),2)) <= Math.pow(r,2)){
+                  return true;
+                }
+                return false;
+            }
+
             /* 以下 マウスイベント */
             element.bind('mousedown', function (event) {
-                console.log('down');
                 // タップ位置を記録
                 if (event.offsetX!==undefined) {
                   lastX = event.offsetX;
@@ -410,50 +440,40 @@ angular.module('stickrApp')
                   lastY = event.layerY - event.currentTarget.offsetTop;
                 }
                 console.log('lastX:'+lastX+'last:'+lastY);
-                // 一つしかクリックさせない
-                anySelected = false;
-                moveClicked = false;
-                rotateClicked = false;
+
+                clickedType = NonClicked;
 
                 stickers.forEach(function (sticker) {
-                    if (anySelected) {
-                      // どれか一つが選択されている時
-                      // 他を全て選択解除
+                  //どれかが選択状態
+                  if(clickedType!=NonClicked){
                       sticker.selected = false;
-                    } else if (nowSelected) {
-                      // 現在なにかが選択されている状態
-                      if (sticker.selected) {
-                        if (containRotate(sticker, lastX, lastY)) {
-                          rotateClicked = true;
-                          anySelected = true;
-                        } else if(contain(sticker, lastX, lastY)) {
-                          moveClicked = true;
-                          anySelected = true;
-                        } else {
-                          nowSelected = false;
+                  }else{
+                      //スティッカーがすでに選択状態の時
+                      if(sticker.selected){
+                          if (containRotate(sticker, lastX, lastY)) {
+                              clickedType = RotateClicked;
+                          } else if(containOrder(sticker,lastX,lastY)){
+                              clickedType = OrderClicked;
+                          }else if(contain(sticker, lastX, lastY)) {
+                              clickedType = MoveClicked;
+                          //どこにも含まれていない場合
+                          }else{
+                            //もし現在選択中のものが再選択されなかったら選択を解除
+                            sticker.selected = false;  
+                          }
+                        //ステッカーが選択状態じゃなくて、マウスの選択範囲に含まれている時
+                        }else if(contain(sticker, lastX, lastY)) {
+                          sticker.selected = true;
+                          clickedType = OneClicked;
+                        }else{
                           sticker.selected = false;
                         }
                       }
-                    } else {
-                      // 何も選択されていない
-                      if(contain(sticker, lastX, lastY)){
-                        console.log('contain');
-                        sticker.selected = true;
-                        nowSelected = true;
-                        anySelected = true;
-                      }
-                    }
-                  });
-
-                if (!anySelected) {
-                  nowSelected = false;
-                }
-
-                //CanvasDraw(stickers);
-              });
+                });
+                CanvasDraw(stickers);
+            });
 
             element.bind('mousemove', function (event) {
-                console.log('move');
                 // タップ位置を取得
                 if(event.offsetX!==undefined){
                   currentX = event.offsetX;
@@ -462,27 +482,21 @@ angular.module('stickrApp')
                   currentX = event.layerX - event.currentTarget.offsetLeft;
                   currentY = event.layerY - event.currentTarget.offsetTop;
                 }
-
                 stickers.forEach(function (sticker) {
                     if (sticker.selected) {
-                      if (rotateClicked) {
+                      if (clickedType == RotateClicked) {
                         sticker.angle = (kakudo(currentX-lastX,currentY-lastY))%360;
-                      } else if (moveClicked) {
+                      } else if (clickedType == MoveClicked) {
                         // 現在、選択中の画像をクリックしている場合
                         sticker.x = currentX-sticker.img.width/2;
                         sticker.y = currentY-sticker.img.height/2;
                       }
                     }
-                  });
-
-                //lastX = currentX;
-                //lastY = currentY;
-
+                });
                 //CanvasDraw(stickers);
-              });
+            });
 
             element.bind('mouseup', function (event) {
-                console.log('up');
                 // タップ位置を記録
                 if (event.offsetX!==undefined) {
                   currentX = event.offsetX;
@@ -491,76 +505,147 @@ angular.module('stickrApp')
                   currentX = event.layerX - event.currentTarget.offsetLeft;
                   currentY = event.layerY - event.currentTarget.offsetTop;
                 }
-
-                stickers.forEach(function (sticker) {
+                stickers.forEach(function (sticker,index) {
+                  if(clickedType!=NonClicked && clickedType!=OneClicked){
                     if (sticker.selected) {
-                      if (rotateClicked) {
+                      //回転
+                      if (clickedType == RotateClicked) {
                         sticker.angle = (kakudo(currentX-lastX,currentY-lastY))%360;
-                        sticker.selected = false;
-                        nowSelected = false;
-                      } else if(moveClicked) {
-                        // 現在、選択中の画像をクリックしている場合
-                        sticker.x = currentX-sticker.img.width/2;
-                        sticker.y = currentY-sticker.img.height/2;
-                        sticker.selected = false;
-                        nowSelected = false;
+                      //並び替え
+                      }else if(clickedType == OrderClicked){
+                        sticker.depth++;
+                        console.log("depth="+sticker.depth);
+                      //移動
+                      }else if(clickedType == MoveClicked) {
+                        if(currentX<=5){
+                          stickers.splice(index, 1);
+                          console.log("delete: "+index);
+                        }else{
+                          // 現在、選択中の画像をクリックしている場合
+                          sticker.x = currentX-sticker.img.width/2;
+                          sticker.y = currentY-sticker.img.height/2;  
+                        }
                       }
                     }
-                  });
-
+                    sticker.selected = false;
+                  }
+                });
                 lastX = currentX;
                 lastY = currentY;
-
+                clickedType = NonClicked;
                 //CanvasDraw(stickers);
-              });
+            });
+            element.bind('mouseout', function (event) {
+              if(clickedType == MoveClicked){
+                stickers.forEach(function (sticker,index) {
+                  if(sticker.selected){
+                    if(currentX<=5){
+                        sticker.selected = false;
+                        stickers.splice(index, 1);
+                        console.log("delete: "+index);
+                        clickedType = NonClicked;
+                    }
+                  }
+                });
+              }
+            });
+
 
             function kakudo (x, y) {
                 var s;
                 var deg;
-
                 s = Math.acos(x/Math.sqrt(x*x+y*y));
                 s = (s/Math.PI)*180.0;
-
                 if (y < 0) {
                   s = 360 - s;
                 }
-
                 deg = Math.floor(s);
-
                 if ((s-deg)>=0.5) {
                   deg++;
                 }
-
                 return deg;
-              }
+            }
 
+            //write draw method
+            //draw select frame
+            function drawFrame(sticker,ctx){
+                var rad = sticker.angle * Math.PI / 180; //ラジアン角;
+                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
+                var coordinateX2 = sticker.img.height/2*Math.sin(rad);
+                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
+                var coordinateY2 = sticker.img.height/2*Math.cos(rad);
+                ctx.beginPath();
+                ctx.lineWidth = 2;
+                ctx.moveTo(-coordinateX1-coordinateX2+sticker.x+sticker.img.width/2, -coordinateY1+coordinateY2+sticker.y+sticker.img.height/2);
+                ctx.lineTo(coordinateX1-coordinateX2+sticker.x+sticker.img.width/2, coordinateY1+coordinateY2+sticker.y+sticker.img.height/2);
+                ctx.lineTo(coordinateX1+coordinateX2+sticker.x+sticker.img.width/2, coordinateY1-coordinateY2+sticker.y+sticker.img.height/2);
+                ctx.lineTo(-coordinateX1+coordinateX2+sticker.x+sticker.img.width/2, -coordinateY1-coordinateY2+sticker.y+sticker.img.height/2);
+                ctx.lineTo(-coordinateX1-coordinateX2+sticker.x+sticker.img.width/2, -coordinateY1+coordinateY2+sticker.y+sticker.img.height/2);
+                ctx.strokeStyle = '#0F0F0F';
+                ctx.stroke();
+                ctx.closePath();
+            }
+            function drawRotateCircle(sticker,ctx){
+                var rad = sticker.angle * Math.PI / 180; //ラジアン角;
+                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
+                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
+                ctx.beginPath();
+                ctx.arc(coordinateX1+sticker.x+sticker.img.width/2,coordinateY1+sticker.y+sticker.img.height/2,20, 0, Math.PI *2, false);
+                ctx.fillStyle = 'rgb(192, 80, 77)'; // 赤
+                ctx.fill();
+                ctx.closePath();
+            }
+            function drawOrderCircle(sticker,ctx){
+                var rad = sticker.angle * Math.PI / 180; //ラジアン角;
+                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
+                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
+                ctx.beginPath();
+                ctx.arc(-coordinateX1+sticker.x+sticker.img.width/2,-coordinateY1+sticker.y+sticker.img.height/2,20, 0, Math.PI *2, false);
+                ctx.fillStyle = 'rgb(77, 80, 192)'; // 青
+                ctx.fill();
+                ctx.closePath();
+                //矢印を書く
+                ctx.beginPath();
+                ctx.lineWidth = 2;
+                ctx.moveTo(-coordinateX1+sticker.x+sticker.img.width/2,-coordinateY1+15+sticker.y+sticker.img.height/2);
+                ctx.lineTo(-coordinateX1+sticker.x+sticker.img.width/2,-coordinateY1-15+sticker.y+sticker.img.height/2);
+                ctx.lineTo(-coordinateX1-15+sticker.x+sticker.img.width/2,-coordinateY1+0+sticker.y+sticker.img.height/2);
+                ctx.lineTo(-coordinateX1+sticker.x+sticker.img.width/2,-coordinateY1-15+sticker.y+sticker.img.height/2);
+                ctx.lineTo(-coordinateX1+15+sticker.x+sticker.img.width/2,-coordinateY1+0+sticker.y+sticker.img.height/2);
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.stroke();
+                ctx.closePath();
+            }
             // 描画
             function CanvasDraw (tmp) {
+                //console.log("clickedType"+clickedType);
                 var stickers = tmp;
                 var ctx = element[0].getContext('2d');
-
                 ctx.clearRect(0, 0, element[0].width, element[0].height);
-
-                var rad = bTabletop[0].angle * Math.PI / 180; //ラジアン角
-                //canvasの状態を一旦保存
-                ctx.save();
-                //画像の縦横半分の位置へtranslate
-                ctx.translate((bTabletop[0].x+400), (bTabletop[0].y+225));
-                //変形マトリックスに回転を適用
-                ctx.rotate(rad);
-                //translateした分戻して原点を0，0に
-                ctx.translate( -1 * (bTabletop[0].x+400), -1 *(bTabletop[0].y+225));
                 // 以下画像の読み込みが完了しているなら
                 ctx.drawImage(bTabletop[0].img, bTabletop[0].x, bTabletop[0].y, bTabletop[0].ref.width, bTabletop[0].ref.height);
-                //canvasの状態を元に戻す
-                ctx.restore();
-
+                
+                if(clickedType==MoveClicked){
+                  if(currentX<=5){
+                    ctx.beginPath();
+                    ctx.fillStyle = 'rgb(192, 80, 77)'; // 赤
+                    ctx.fillRect(0, 0, 20, bTabletop[0].ref.height);
+                    ctx.closePath(); 
+                  }
+                }
+                //配列を深さの浅い順にソート
+                stickers.sort(
+                  function(s1,s2){
+                      if( s1.depth < s2.depth ) return -1;
+                        if( s1.depth > s2.depth ) return 1;
+                        return 0;
+                    }
+                );
                 stickers.forEach(function (sticker) {
                     if (!sticker.ready) {
                       return;
                     }
                     var rad = sticker.angle * Math.PI / 180; //ラジアン角;
-
                     //canvasの状態を一旦保存
                     ctx.save();
                     //画像の縦横半分の位置へtranslate
@@ -574,31 +659,17 @@ angular.module('stickrApp')
                     //canvasの状態を元に戻す
                     ctx.restore();
 
-                    // 選択状態なら？
+                    // 選択状態なら
                     if(sticker.selected) {
-                      // this.ctx.fill();
-                      ctx.lineWidth = 3;
                       // 選択中の枠をかく
-                      ctx.beginPath();
-                      ctx.moveTo(-sticker.img.width/2*Math.cos(rad)-sticker.img.height/2*Math.sin(rad)+sticker.x+sticker.img.width/2, -sticker.img.width/2*Math.sin(rad)+sticker.img.height/2*Math.cos(rad)+sticker.y+sticker.img.height/2);
-                      ctx.lineTo(sticker.img.width/2*Math.cos(rad)-sticker.img.height/2*Math.sin(rad)+sticker.x+sticker.img.width/2, sticker.img.width/2*Math.sin(rad)+sticker.img.height/2*Math.cos(rad)+sticker.y+sticker.img.height/2);
-                      ctx.lineTo(sticker.img.width/2*Math.cos(rad)+sticker.img.height/2*Math.sin(rad)+sticker.x+sticker.img.width/2, sticker.img.width/2*Math.sin(rad)-sticker.img.height/2*Math.cos(rad)+sticker.y+sticker.img.height/2);
-                      ctx.lineTo(-sticker.img.width/2*Math.cos(rad)+sticker.img.height/2*Math.sin(rad)+sticker.x+sticker.img.width/2, -sticker.img.width/2*Math.sin(rad)-sticker.img.height/2*Math.cos(rad)+sticker.y+sticker.img.height/2);
-                      ctx.lineTo(-sticker.img.width/2*Math.cos(rad)-sticker.img.height/2*Math.sin(rad)+sticker.x+sticker.img.width/2, -sticker.img.width/2*Math.sin(rad)+sticker.img.height/2*Math.cos(rad)+sticker.y+sticker.img.height/2);
-                      ctx.strokeStyle = '#0F0F0F';
-                      ctx.stroke();
-                      ctx.closePath();
-
+                      drawFrame(sticker,ctx);
                       // 回転選択用の枠をかく
-                      ctx.beginPath();
-                      ctx.arc(sticker.img.width/2*Math.cos(rad)+sticker.x+sticker.img.width/2, sticker.img.width/2*Math.sin(rad)+sticker.y+sticker.img.height/2,
-                      20, 0, Math.PI *2, false);
-                      ctx.fillStyle = 'rgb(192, 80, 77)'; // 赤
-                      ctx.fill();
-                      ctx.closePath();
+                      drawRotateCircle(sticker,ctx);
+                      // 画像入れ替え用の枠をかく
+                      drawOrderCircle(sticker,ctx);
                     }
                     // 枠を描画
-                  }, ctx); // for each
+                }, ctx); // for each
               } // draw
           } // link function
       }; // return
