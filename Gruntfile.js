@@ -202,7 +202,7 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/public/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/public/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/public/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            //'<%= yeoman.dist %>/public/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= yeoman.dist %>/public/styles/fonts/*'
           ]
         }
@@ -284,11 +284,11 @@ module.exports = function (grunt) {
     },
 
     // Replace Google CDN references
-    //cdnify: {
-    //  dist: {
-    //    html: ['<%= yeoman.dist %>/views/*.html']
-//    }
-    //},
+    cdnify: {
+      dist: {
+        html: ['<%= yeoman.dist %>/views/*.html']
+      }
+    },
 
     // Copies remaining files to places other tasks can use
     copy: {
