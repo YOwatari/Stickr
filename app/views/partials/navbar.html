@@ -1,27 +1,27 @@
-<div class="header" ng-controller="NavbarCtrl">
-    <h3>
-        <a ng-href="/">
-            <img src="images/stickr_logo.png" height="60" alt="Stickr" />
-        </a>
-    </h3>
+<div class="navbar navbar-default" role="navigation" ng-controller="NavbarCtrl">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Stickr</a>
+        </div>
 
-    <div ng-if="editPageCheck()" class="header_center">
-        <span ng-repeat="item in phase">
-            <span ng-if="boldCheck(item.link) === true">
-                <b>{{ $index+1 }}</b>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav" ng-if="editPageCheck()">
+            <span ng-repeat="item in phase">
+                <li class="active" ng-if="boldCheck(item.link) === true"><a href="#">{{ $index+1 }}</a></li>
+                <li ng-if="boldCheck(item.link) === false"><a href="#">{{ $index+1 }}</a></li>
             </span>
-            <span ng-if="boldCheck(item.link) === false">
-                {{ $index+1 }}
-            </span>
-            <span ng-if="$last !== true">
-                -
-            </span>
-        </span>
-    </div>
-
-    <div class="header_right">
-        <h3>
-            <a ng-repeat="item in page" ng-href="{{ item.link }}">{{ item.title }} </a>
-        </h3>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">About</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
     </div>
 </div>
