@@ -65,21 +65,27 @@ body {
 /* navbar.html */
 body.ng-scope {
     padding: 0px;
+    width: 1024px;
 }
 
 div.container.ng-scope {
     padding: 0px;
 }
 
+.container .jumbotron {
+  border-radius: 0px;
+  margin: 0px;
+  height: 576px;
+}
+
 div.navbar.ng-scope {
     padding: 0px;
     margin: 0px;
     border: 0px;
-}
-
-.container .jumbotron {
-  border-radius: 0px;
-  margin: 0px;
+    color: black;
+    background: white;
+    opacity: 0.8;
+    filter: alpha(opacity=0.8);
 }
 
 
