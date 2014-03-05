@@ -116,16 +116,14 @@ body {
     background-color: #EEEEEE;
 }
 
-#save{
-    font-size: 12pt;
-    width: 100px;
-    height: 30px;
+.buttons{
+    line-height: 5px;
+    font-size: 0.8em;
+    width: 130px;
+    height: 24px;
+    text-align: center;
     background: -moz-linear-gradient(top, #fff, #e1e1e1 1%, #e1e1e1 50%, #cfcfcf 99%, #ccc);
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.01, #e1e1e1), color-stop(0.5, #e1e1e1), color-stop(0.99, #cfcfcf), to(#ccc));
-}
-
-#buttons{
-    text-align: center;
 }
 
 .thumbnail{

@@ -16,9 +16,17 @@ html{
 	-o-transform: scale(1, 1.01);
 }
 
-a img{
-	border-style: none;
-	text-decoration: none;
+#tabletop{
+	-webkit-filter: brightness(100%);
+	-webkit-transition: all 0.25s ease;
+	-moz-transition: all 0.25s ease;
+	-o-transition: all 0.25s ease;
+	-ms-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+
+#tabletop:hover{
+	-webkit-filter: brightness(60%);
 }
 
 body{
@@ -82,7 +90,7 @@ section{
 
 section p{
 	float:right;
-	margin: 10px;
+	margin: 30px 10px 30px 10px;
 	font-size: large;
 	text-align: center;
 	vertical-align: middle;
@@ -96,11 +104,6 @@ article div{
 	text-align: center;
 	float: left;
 }
-
-section img{
-	
-}
-
 #iPad{
 	width: 30%;
 	height: auto;
@@ -118,6 +121,6 @@ section img{
 	display:none;
 }
 
-footer{
+.footer{
 }
 
