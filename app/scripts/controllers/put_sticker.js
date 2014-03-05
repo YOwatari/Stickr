@@ -60,7 +60,7 @@ angular.module('stickrApp')
           {
             'src': 'images/sticker/chatworks.png',
             'width': 160,
-            'height': 80
+            'height': 55
           },
           {
             'src': 'images/sticker/colo_c.png',
@@ -95,7 +95,7 @@ angular.module('stickrApp')
           {
             'src': 'images/sticker/donuts_logo.png',
             'width': 160,
-            'height': 80
+            'height': 70
           },
           {
             'src': 'images/sticker/drecom_hentai.png',
@@ -115,12 +115,12 @@ angular.module('stickrApp')
           {
             'src': 'images/sticker/gloops.png',
             'width': 160,
-            'height': 80
+            'height': 99
           },
           {
             'src': 'images/sticker/h1_logo.png',
             'width': 160,
-            'height': 80
+            'height': 30
           },
           {
             'src': 'images/sticker/github.png',
@@ -165,7 +165,7 @@ angular.module('stickrApp')
           {
             'src': 'images/sticker/klanb_games.png',
             'width': 160,
-            'height': 80
+            'height': 50
           },
           {
             'src': 'images/sticker/leve_b.png',
@@ -282,9 +282,11 @@ angular.module('stickrApp')
             stickers[idx].img.src = stickers[idx].ref.src;
             stickers[idx].img.onload = function () {
                 stickers[idx].ready = true;
-              };
-          };
-
+            };
+        };
+        $scope.saveCanvas = function () {
+          console.log("save");
+        };
         $scope.$emit('success');
       });
   });
@@ -442,32 +444,34 @@ angular.module('stickrApp')
 
                 clickedType = NonClicked;
 
-                stickers.forEach(function (sticker) {
-                  //どれかが選択状態
-                  if(clickedType!=NonClicked){
-                      sticker.selected = false;
-                  }else{
-                      //スティッカーがすでに選択状態の時
-                      if(sticker.selected){
-                          if (containRotate(sticker, lastX, lastY)) {
-                              clickedType = RotateClicked;
-                          } else if(containOrder(sticker,lastX,lastY)){
-                              clickedType = OrderClicked;
-                          }else if(contain(sticker, lastX, lastY)) {
-                              clickedType = MoveClicked;
-                          //どこにも含まれていない場合
-                          }else{
-                            //もし現在選択中のものが再選択されなかったら選択を解除
-                            sticker.selected = false;  
-                          }
-                        //ステッカーが選択状態じゃなくて、マウスの選択範囲に含まれている時
+               stickers.forEach(function (sticker,index) {
+                    console.log("sticker"+index+": "+sticker.selected);
+                    console.log("sticker angle: "+sticker.angle);
+                    //どれかが選択状態
+                    if(clickedType!=NonClicked){
+                        sticker.selected = false;
+                    }else{
+                        //スティッカーがすでに選択状態の時
+                        if(sticker.selected){
+                            if (containRotate(sticker, lastX, lastY)) {
+                                clickedType = RotateClicked;
+                            } else if(containOrder(sticker,lastX,lastY)){
+                                clickedType = OrderClicked;
+                            }else if(contain(sticker, lastX, lastY)) {
+                                clickedType = MoveClicked;
+                            //どこにも含まれていない場合
+                            }else{
+                              //もし現在選択中のものが再選択されなかったら選択を解除
+                              sticker.selected = false;  
+                            }
+                          //ステッカーが選択状態じゃなくて、マウスの選択範囲に含まれている時
                         }else if(contain(sticker, lastX, lastY)) {
-                          sticker.selected = true;
-                          clickedType = OneClicked;
+                            sticker.selected = true;
+                            clickedType = OneClicked;
                         }else{
-                          sticker.selected = false;
+                            sticker.selected = false;
                         }
-                      }
+                    }
                 });
                 CanvasDraw(stickers);
             });
@@ -484,7 +488,10 @@ angular.module('stickrApp')
                 stickers.forEach(function (sticker) {
                     if (sticker.selected) {
                       if (clickedType == RotateClicked) {
-                        sticker.angle = (kakudo(currentX-lastX,currentY-lastY))%360;
+                        var tmpAngle = (kakudo(currentX-lastX,currentY-lastY))%360;
+                        if(!isNaN(parseInt(tmpAngle))){
+                          sticker.angle = tmpAngle;
+                        }
                       } else if (clickedType == MoveClicked) {
                         // 現在、選択中の画像をクリックしている場合
                         sticker.x = currentX-sticker.img.width/2;
@@ -509,7 +516,12 @@ angular.module('stickrApp')
                     if (sticker.selected) {
                       //回転
                       if (clickedType == RotateClicked) {
-                        sticker.angle = (kakudo(currentX-lastX,currentY-lastY))%360;
+                        var tmpAngle = (kakudo(currentX-lastX,currentY-lastY))%360;
+                        if(isNaN(parseInt(tmpAngle))){
+                          sticker.angle = 0;
+                        }else{
+                          sticker.angle = tmpAngle;
+                        }
                       //並び替え
                       }else if(clickedType == OrderClicked){
                         sticker.depth++;
