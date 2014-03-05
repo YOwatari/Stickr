@@ -16,6 +16,10 @@ angular.module('stickrApp', [
         templateUrl: 'partials/login',
         controller: 'LoginCtrl'
       })
+      .when('/tutorial', {
+        templateUrl: 'partials/tutorial',
+        controller: 'TutorialCtrl'
+      })
       .when('/signup', {
         templateUrl: 'partials/signup',
         controller: 'SignupCtrl'
