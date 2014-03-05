@@ -244,6 +244,41 @@ angular.module('stickrApp')
             'src': 'images/sticker/wordpress_logo.png',
             'width': 80,
             'height': 80
+          },
+          {
+            'src': 'images/sticker/apprits_c1.png',
+            'width': 80,
+            'height': 80
+          },
+          {
+            'src': 'images/sticker/apprits_c2.png',
+            'width': 80,
+            'height': 80
+          },
+          {
+            'src': 'images/sticker/apprits_c3.png',
+            'width': 80,
+            'height': 80
+          },
+          {
+            'src': 'images/sticker/cook.png',
+            'width': 80,
+            'height': 80
+          },
+          {
+            'src': 'images/sticker/base.png',
+            'width': 160,
+            'height': 80
+          },
+          {
+            'src': 'images/sticker/pixta_rect.png',
+            'width': 160,
+            'height': 80
+          },
+          {
+            'src': 'images/sticker/supporters.png',
+            'width': 160,
+            'height': 80
           }
         ];
 
