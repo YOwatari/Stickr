@@ -13,11 +13,10 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav" ng-if="!editPageCheck()">
-            <span ng-repeat="item in phase">
-                <li class="active" ng-if="boldCheck(item.link) === true"><a href="#">{{ $index+1 }}</a></li>
-                <li ng-if="boldCheck(item.link) === false"><a href="#">{{ $index+1 }}</a></li>
-            </span>
+          <ul class="nav navbar-nav phase" ng-if="editPageCheck()">
+            <li ng-repeat="item in phase" ng-class="{active: isActive(item.link)}">
+                <a ng-href="{{item.link}}">{{ $index+1 }}</a>
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">About</a></li>

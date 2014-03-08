@@ -91,6 +91,38 @@ div.navbar.ng-scope {
     border-radius: 0px;
 }
 
+ul.nav.navbar-nav.phase.ng-scope {
+    text-align: center;
+    margin: 0 235px;
+}
+
+ul.phase li.ng-scope a {
+    margin: 5px;
+    text-decoration: none;
+    line-height: 10px;
+    border: 1px solid #008b8b;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+ul.phase li.active.ng-scope a {
+    color: #fff;
+    background-color: #008b8b;
+}
+
+ul.phase li.ng-scope a:hover {
+    color: #777;
+    background: transparent;
+}
+
+ul.phase li.active.ng-scope a:hover {
+    color: #ff;
+    background-color: #008b8b;
+}
+
 
 /* put_stiker */
 
