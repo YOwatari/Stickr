@@ -3,6 +3,10 @@
 
 var stickers;
 
+$(window).on('touchmove.noScroll', function(e) {
+    e.preventDefault();
+});
+
 angular.module('stickrApp')
   .controller('EditPutStickerCtrl', function ($scope, $http) {
     $http.get('/api/awesomeThings').success(function (awesomeThings) {
@@ -10,8 +14,8 @@ angular.module('stickrApp')
 
         $scope.imgTabletop = [{
             'src': 'images/tabletop/Mac_11inB.png',
-            'width': 900,
-            'height': 576
+            'width': 680,
+            'height': 435
           }];
         $scope.backTabletop = [{
             'ref': $scope.imgTabletop[0],
