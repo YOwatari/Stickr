@@ -8,8 +8,8 @@ angular.module('stickrApp')
 
         $scope.imgTabletop = [{
             'src': 'images/tabletop/Mac_11inB.png',
-            'width': 900,
-            'height': 576
+            'width': 780,
+            'height': 570
           }];
         $scope.backTabletop = [{
             'ref': $scope.imgTabletop[0],
@@ -330,6 +330,9 @@ angular.module('stickrApp')
     return {
         restrict: 'A',
         link: function (scope, element) {
+            //scaling all image
+            var scaleWidth = 1;//canvas size/backTopWidth(900)
+            var scaleHeight = 1;
             var ctx = element[0].getContext('2d');
             // タップ位置
             var lastX = 0;
@@ -414,15 +417,15 @@ angular.module('stickrApp')
 
             function contain (sticker, x, y) {
                 var rad = sticker.angle * Math.PI / 180; //ラジアン角;
-                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
-                var coordinateX2 = sticker.img.height/2*Math.sin(rad);
-                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
-                var coordinateY2 = sticker.img.height/2*Math.cos(rad);
+                var coordinateX1 = sticker.img.width/2*scaleWidth*Math.cos(rad);
+                var coordinateX2 = sticker.img.height/2*scaleHeight*Math.sin(rad);
+                var coordinateY1 = sticker.img.width/2*scaleWidth*Math.sin(rad);
+                var coordinateY2 = sticker.img.height/2*scaleHeight*Math.cos(rad);
 
-                var lx = -coordinateX1-coordinateX2+sticker.x+sticker.img.width/2;
-                var rx = coordinateX1+coordinateX2+sticker.x+sticker.img.width/2;
-                var uy = -coordinateY1+coordinateY2+sticker.y+sticker.img.height/2;
-                var by = coordinateY1-coordinateY2+sticker.y+sticker.img.height/2;
+                var lx = -coordinateX1-coordinateX2+sticker.x+sticker.img.width/2*scaleWidth;
+                var rx = coordinateX1+coordinateX2+sticker.x+sticker.img.width/2*scaleWidth;
+                var uy = -coordinateY1+coordinateY2+sticker.y+sticker.img.height/2*scaleHeight;
+                var by = coordinateY1-coordinateY2+sticker.y+sticker.img.height/2*scaleHeight;
                 // 点が含まれているのかを判定
                 if(x >= Math.min(lx,rx) && x <= Math.max(lx,rx)) {
                   if(y >= Math.min(uy,by) && y <= Math.max(uy,by)) {
@@ -435,11 +438,11 @@ angular.module('stickrApp')
             function containRotate (sticker, x, y){
                 var rad = sticker.angle / 180 * Math.PI;
                 var r = 20;
-                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
-                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
+                var coordinateX1 = sticker.img.width/2*scaleWidth*Math.cos(rad);
+                var coordinateY1 = sticker.img.width/2*scaleWidth*Math.sin(rad);
                 
-                var centerX = coordinateX1+sticker.x+sticker.img.width/2,
-                    centerY = coordinateY1+sticker.y+sticker.img.height/2;
+                var centerX = coordinateX1+sticker.x+sticker.img.width/2*scaleWidth,
+                    centerY = coordinateY1+sticker.y+sticker.img.height/2*scaleHeight;
                 // 点が右横の円に含まれているのかを判定
                 if((Math.pow(Math.abs(centerX-x),2)+Math.pow(Math.abs(centerY-y),2)) <= Math.pow(r,2)){
                     return true;
@@ -450,10 +453,10 @@ angular.module('stickrApp')
             function containOrder (sticker, x, y){
                 var rad = sticker.angle / 180 * Math.PI;
                 var r = 20;
-                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
-                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
-                var centerX = -coordinateX1+sticker.x+sticker.img.width/2,
-                    centerY = -coordinateY1+sticker.y+sticker.img.height/2;
+                var coordinateX1 = sticker.img.width/2*scaleWidth*Math.cos(rad);
+                var coordinateY1 = sticker.img.width/2*scaleWidth*Math.sin(rad);
+                var centerX = -coordinateX1+sticker.x+sticker.img.width/2*scaleWidth,
+                    centerY = -coordinateY1+sticker.y+sticker.img.height/2+scaleHeight;
                 // 点が右横の円に含まれているのかを判定
                 if((Math.pow(Math.abs(centerX-x),2)+Math.pow(Math.abs(centerY-y),2)) <= Math.pow(r,2)){
                   return true;
@@ -463,7 +466,7 @@ angular.module('stickrApp')
 
             /* 以下 マウスイベント */
             element.bind('mousedown', function (event) {
-                // タップ位置を記録
+                // クリック位置を記録
                 if (event.offsetX!==undefined) {
                   lastX = event.offsetX;
                   lastY = event.offsetY;
@@ -472,9 +475,77 @@ angular.module('stickrApp')
                   lastY = event.layerY - event.currentTarget.offsetTop;
                 }
                 console.log('lastX:'+lastX+'last:'+lastY);
-                clickedType = NonClicked;
+                downEvent();
+            });
 
-               stickers.forEach(function (sticker,index) {
+            element.bind('touchstart',function (event){
+                // タップ位置を記録
+                if (event.touches[0].offsetX!==undefined) {
+                  lastX = event.touches[0].offsetX;
+                  lastY = event.touches[0].offsetY;
+                } else { // Firefox compatibility
+                  lastX = event.touches[0].layerX - event.currentTarget.offsetLeft;
+                  lastY = event.touches[0].layerY - event.currentTarget.offsetTop;
+                }
+                console.log('lastX:'+lastX+'last:'+lastY);
+                downEvent();
+            });
+
+            element.bind('mousemove', function (event) {
+                // タップ位置を取得
+                if(event.offsetX!==undefined){
+                  currentX = event.offsetX;
+                  currentY = event.offsetY;
+                } else {
+                  currentX = event.layerX - event.currentTarget.offsetLeft;
+                  currentY = event.layerY - event.currentTarget.offsetTop;
+                }
+                moveEvent();
+            });
+
+            element.bind('touchmove', function (event) {
+                // タップ位置を取得
+                if(event.touches[0].offsetX!==undefined){
+                  currentX = event.touches[0].offsetX;
+                  currentY = event.touches[0].offsetX;
+                } else {
+                  currentX = event.touches[0].layerX - event.currentTarget.offsetLeft;
+                  currentY = event.touches[0].layerY - event.currentTarget.offsetTop;
+                }
+                moveEvent();
+            });
+
+            element.bind('mouseup', function (event) {
+                // タップ位置を記録
+                if (event.offsetX!==undefined) {
+                  currentX = event.offsetX;
+                  currentY = event.offsetY;
+                } else { // Firefox compatibility
+                  currentX = event.layerX - event.currentTarget.offsetLeft;
+                  currentY = event.layerY - event.currentTarget.offsetTop;
+                }
+                upEvent();
+            });
+
+            element.bind('touchend', function (event) {
+                // タップ位置を記録
+                if (event.touches[0].offsetX!==undefined) {
+                  currentX = event.touches[0].offsetX;
+                  currentY = event.touches[0].offsetY;
+                } else { // Firefox compatibility
+                  currentX = event.touches[0].layerX - event.currentTarget.offsetLeft;
+                  currentY = event.touches[0].layerY - event.currentTarget.offsetTop;
+                }
+                upEvent();
+            });
+
+            element.bind('mouseout', function (event) {
+              outEvent();
+            });
+
+            function downEvent(){
+              clickedType = NonClicked;
+                stickers.forEach(function (sticker,index) {
                     console.log("sticker"+index+": "+sticker.selected);
                     console.log("sticker angle: "+sticker.angle);
                     //どれかが選択状態
@@ -502,46 +573,28 @@ angular.module('stickrApp')
                             sticker.selected = false;
                         }
                     }
-                });
-                CanvasDraw(stickers);
-            });
+              });
+            }
 
-            element.bind('mousemove', function (event) {
-                // タップ位置を取得
-                if(event.offsetX!==undefined){
-                  currentX = event.offsetX;
-                  currentY = event.offsetY;
-                } else {
-                  currentX = event.layerX - event.currentTarget.offsetLeft;
-                  currentY = event.layerY - event.currentTarget.offsetTop;
-                }
-                stickers.forEach(function (sticker) {
-                    if (sticker.selected) {
-                      if (clickedType == RotateClicked) {
-                        var tmpAngle = (kakudo(currentX-lastX,currentY-lastY))%360;
-                        if(!isNaN(parseInt(tmpAngle))){
-                          sticker.angle = tmpAngle;
-                        }
-                      } else if (clickedType == MoveClicked) {
-                        // 現在、選択中の画像をクリックしている場合
-                        sticker.x = currentX-sticker.img.width/2;
-                        sticker.y = currentY-sticker.img.height/2;
-                      }
+            function moveEvent(){
+              stickers.forEach(function (sticker) {
+                if (sticker.selected) {
+                  if (clickedType == RotateClicked) {
+                    var tmpAngle = (kakudo(currentX-lastX,currentY-lastY))%360;
+                    if(!isNaN(parseInt(tmpAngle))){
+                      sticker.angle = tmpAngle;
                     }
-                });
-                //CanvasDraw(stickers);
-            });
-
-            element.bind('mouseup', function (event) {
-                // タップ位置を記録
-                if (event.offsetX!==undefined) {
-                  currentX = event.offsetX;
-                  currentY = event.offsetY;
-                } else { // Firefox compatibility
-                  currentX = event.layerX - event.currentTarget.offsetLeft;
-                  currentY = event.layerY - event.currentTarget.offsetTop;
+                  } else if (clickedType == MoveClicked) {
+                    // 現在、選択中の画像をクリックしている場合
+                    sticker.x = currentX-sticker.img.width/2*scaleWidth;
+                    sticker.y = currentY-sticker.img.height/2*scaleHeight;
+                  }
                 }
-                stickers.forEach(function (sticker,index) {
+              });
+            }
+
+            function upEvent(){
+              stickers.forEach(function (sticker,index) {
                   if(clickedType!=NonClicked && clickedType!=OneClicked){
                     if (sticker.selected) {
                       //回転
@@ -563,8 +616,8 @@ angular.module('stickrApp')
                           console.log("delete: "+index);
                         }else{
                           // 現在、選択中の画像をクリックしている場合
-                          sticker.x = currentX-sticker.img.width/2;
-                          sticker.y = currentY-sticker.img.height/2;  
+                          sticker.x = currentX-sticker.img.width/2*scaleWidth;
+                          sticker.y = currentY-sticker.img.height/2*scaleHeight;  
                         }
                       }
                     }
@@ -574,9 +627,9 @@ angular.module('stickrApp')
                 lastX = currentX;
                 lastY = currentY;
                 clickedType = NonClicked;
-                //CanvasDraw(stickers);
-            });
-            element.bind('mouseout', function (event) {
+            }
+
+            function outEvent(){
               if(clickedType == MoveClicked){
                 stickers.forEach(function (sticker,index) {
                   if(sticker.selected){
@@ -589,7 +642,7 @@ angular.module('stickrApp')
                   }
                 });
               }
-            });
+            }
 
 
             function kakudo (x, y) {
@@ -611,48 +664,48 @@ angular.module('stickrApp')
             //draw select frame
             function drawFrame(sticker,ctx){
                 var rad = sticker.angle * Math.PI / 180; //ラジアン角;
-                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
-                var coordinateX2 = sticker.img.height/2*Math.sin(rad);
-                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
-                var coordinateY2 = sticker.img.height/2*Math.cos(rad);
+                var coordinateX1 = sticker.img.width/2*scaleWidth*Math.cos(rad);
+                var coordinateX2 = sticker.img.height/2*scaleHeight*Math.sin(rad);
+                var coordinateY1 = sticker.img.width/2*scaleWidth*Math.sin(rad);
+                var coordinateY2 = sticker.img.height/2*scaleHeight*Math.cos(rad);
                 ctx.beginPath();
                 ctx.lineWidth = 2;
-                ctx.moveTo(-coordinateX1-coordinateX2+sticker.x+sticker.img.width/2, -coordinateY1+coordinateY2+sticker.y+sticker.img.height/2);
-                ctx.lineTo(coordinateX1-coordinateX2+sticker.x+sticker.img.width/2, coordinateY1+coordinateY2+sticker.y+sticker.img.height/2);
-                ctx.lineTo(coordinateX1+coordinateX2+sticker.x+sticker.img.width/2, coordinateY1-coordinateY2+sticker.y+sticker.img.height/2);
-                ctx.lineTo(-coordinateX1+coordinateX2+sticker.x+sticker.img.width/2, -coordinateY1-coordinateY2+sticker.y+sticker.img.height/2);
-                ctx.lineTo(-coordinateX1-coordinateX2+sticker.x+sticker.img.width/2, -coordinateY1+coordinateY2+sticker.y+sticker.img.height/2);
+                ctx.moveTo(-coordinateX1-coordinateX2+sticker.x+sticker.img.width/2*scaleWidth, -coordinateY1+coordinateY2+sticker.y+sticker.img.height/2*scaleHeight);
+                ctx.lineTo(coordinateX1-coordinateX2+sticker.x+sticker.img.width/2*scaleWidth, coordinateY1+coordinateY2+sticker.y+sticker.img.height/2*scaleHeight);
+                ctx.lineTo(coordinateX1+coordinateX2+sticker.x+sticker.img.width/2*scaleWidth, coordinateY1-coordinateY2+sticker.y+sticker.img.height/2*scaleHeight);
+                ctx.lineTo(-coordinateX1+coordinateX2+sticker.x+sticker.img.width/2*scaleWidth, -coordinateY1-coordinateY2+sticker.y+sticker.img.height/2*scaleHeight);
+                ctx.lineTo(-coordinateX1-coordinateX2+sticker.x+sticker.img.width/2*scaleWidth, -coordinateY1+coordinateY2+sticker.y+sticker.img.height/2*scaleHeight);
                 ctx.strokeStyle = '#0F0F0F';
                 ctx.stroke();
                 ctx.closePath();
             }
             function drawRotateCircle(sticker,ctx){
                 var rad = sticker.angle * Math.PI / 180; //ラジアン角;
-                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
-                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
+                var coordinateX1 = sticker.img.width/2*scaleWidth*Math.cos(rad);
+                var coordinateY1 = sticker.img.width/2*scaleWidth*Math.sin(rad);
                 ctx.beginPath();
-                ctx.arc(coordinateX1+sticker.x+sticker.img.width/2,coordinateY1+sticker.y+sticker.img.height/2,20, 0, Math.PI *2, false);
+                ctx.arc(coordinateX1+sticker.x+sticker.img.width/2*scaleWidth,coordinateY1+sticker.y+sticker.img.height/2*scaleHeight,20, 0, Math.PI *2, false);
                 ctx.fillStyle = 'rgb(192, 80, 77)'; // 赤
                 ctx.fill();
                 ctx.closePath();
             }
             function drawOrderCircle(sticker,ctx){
                 var rad = sticker.angle * Math.PI / 180; //ラジアン角;
-                var coordinateX1 = sticker.img.width/2*Math.cos(rad);
-                var coordinateY1 = sticker.img.width/2*Math.sin(rad);
+                var coordinateX1 = sticker.img.width/2*scaleWidth*Math.cos(rad);
+                var coordinateY1 = sticker.img.width/2*scaleWidth*Math.sin(rad);
                 ctx.beginPath();
-                ctx.arc(-coordinateX1+sticker.x+sticker.img.width/2,-coordinateY1+sticker.y+sticker.img.height/2,20, 0, Math.PI *2, false);
+                ctx.arc(-coordinateX1+sticker.x+sticker.img.width/2*scaleWidth,-coordinateY1+sticker.y+sticker.img.height/2*scaleHeight,20, 0, Math.PI *2, false);
                 ctx.fillStyle = 'rgb(77, 80, 192)'; // 青
                 ctx.fill();
                 ctx.closePath();
                 //矢印を書く
                 ctx.beginPath();
                 ctx.lineWidth = 2;
-                ctx.moveTo(-coordinateX1+sticker.x+sticker.img.width/2,-coordinateY1+15+sticker.y+sticker.img.height/2);
-                ctx.lineTo(-coordinateX1+sticker.x+sticker.img.width/2,-coordinateY1-15+sticker.y+sticker.img.height/2);
-                ctx.lineTo(-coordinateX1-15+sticker.x+sticker.img.width/2,-coordinateY1+0+sticker.y+sticker.img.height/2);
-                ctx.lineTo(-coordinateX1+sticker.x+sticker.img.width/2,-coordinateY1-15+sticker.y+sticker.img.height/2);
-                ctx.lineTo(-coordinateX1+15+sticker.x+sticker.img.width/2,-coordinateY1+0+sticker.y+sticker.img.height/2);
+                ctx.moveTo(-coordinateX1+sticker.x+sticker.img.width/2*scaleWidth,-coordinateY1+15+sticker.y+sticker.img.height/2*scaleHeight);
+                ctx.lineTo(-coordinateX1+sticker.x+sticker.img.width/2*scaleWidth,-coordinateY1-15+sticker.y+sticker.img.height/2*scaleHeight);
+                ctx.lineTo(-coordinateX1-15+sticker.x+sticker.img.width/2*scaleWidth,-coordinateY1+0+sticker.y+sticker.img.height/2*scaleHeight);
+                ctx.lineTo(-coordinateX1+sticker.x+sticker.img.width/2*scaleWidth,-coordinateY1-15+sticker.y+sticker.img.height/2*scaleHeight);
+                ctx.lineTo(-coordinateX1+15+sticker.x+sticker.img.width/2*scaleWidth,-coordinateY1+0+sticker.y+sticker.img.height/2*scaleHeight);
                 ctx.strokeStyle = '#FFFFFF';
                 ctx.stroke();
                 ctx.closePath();
@@ -664,14 +717,16 @@ angular.module('stickrApp')
                 var ctx = element[0].getContext('2d');
                 ctx.clearRect(0, 0, element[0].width, element[0].height);
                 // 以下画像の読み込みが完了しているなら
-                ctx.drawImage(bTabletop[0].img, bTabletop[0].x, bTabletop[0].y, bTabletop[0].ref.width, bTabletop[0].ref.height);
+                ctx.drawImage(bTabletop[0].img, bTabletop[0].x, bTabletop[0].y,element[0].width, element[0].height);
                 
+                scaleWidth = element[0].width/bTabletop[0].img.width;
+                scaleHeight = element[0].height/bTabletop[0].img.height;
                 if(clickedType==MoveClicked){
                   if(currentX<=5){
                     ctx.beginPath();
                     ctx.fillStyle = 'rgb(192, 80, 77)'; // 赤
-                    ctx.fillRect(0, 0, 20, bTabletop[0].ref.height);
-                    ctx.closePath(); 
+                    ctx.fillRect(0, 0, 20, element[0].height);
+                    ctx.closePath();
                   }
                 }
                 //配列を深さの浅い順にソート
@@ -690,13 +745,13 @@ angular.module('stickrApp')
                     //canvasの状態を一旦保存
                     ctx.save();
                     //画像の縦横半分の位置へtranslate
-                    ctx.translate((sticker.x+sticker.img.width/2), (sticker.y+sticker.img.height/2));
+                    ctx.translate((sticker.x+sticker.img.width/2*scaleWidth), (sticker.y+sticker.img.height/2*scaleHeight));
                     //変形マトリックスに回転を適用
                     ctx.rotate(rad);
                     //translateした分戻して原点を0，0に
-                    ctx.translate( -1 * (sticker.x+sticker.img.width/2), -1 *(sticker.y+sticker.img.height/2));
+                    ctx.translate( -1 * (sticker.x+sticker.img.width/2*scaleWidth), -1 *(sticker.y+sticker.img.height/2*scaleHeight));
                     // 以下画像の読み込みが完了しているなら
-                    ctx.drawImage(sticker.img, sticker.x, sticker.y);
+                    ctx.drawImage(sticker.img, sticker.x, sticker.y,sticker.img.width*scaleWidth,sticker.img.height*scaleHeight);
                     //canvasの状態を元に戻す
                     ctx.restore();
 
