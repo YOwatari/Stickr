@@ -2,28 +2,15 @@
 
 angular.module('stickrApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    }];
-
     $scope.phase = [{
-      'title': 'Select Tabletop',
+      'title': 'tabletop',
       'link': '/edit/select_tabletop'
     }, {
-      'title': 'Select Sticker',
-      'link': '/edit/select_sticker'
-    }, {
-      'title': 'Put Sticker',
+      'title': 'edit',
       'link': '/edit/put_sticker'
     }, {
-      'title': 'Complete Tabletop',
+      'title': 'complete',
       'link': '/edit/submit'
-    }];
-
-    $scope.page = [{
-      'title': 'home',
-      'link': '/'
     }];
 
     $scope.editPageCheck = function () {
@@ -33,7 +20,7 @@ angular.module('stickrApp')
     $scope.boldCheck = function (path) {
       return path === $location.path();
     };
-    
+
     $scope.logout = function() {
       Auth.logout()
       .then(function() {
