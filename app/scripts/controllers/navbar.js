@@ -2,14 +2,25 @@
 
 angular.module('stickrApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
+    $scope.phase = [{
+      'title': 'tabletop',
+      'link': '/edit/select_tabletop'
     }, {
-      'title': 'Settings',
-      'link': '/settings'
+      'title': 'edit',
+      'link': '/edit/put_sticker'
+    }, {
+      'title': 'complete',
+      'link': '/edit/submit'
     }];
-    
+
+    $scope.editPageCheck = function () {
+      return $location.path().indexOf('edit') !== -1;
+    };
+
+    $scope.boldCheck = function (path) {
+      return path === $location.path();
+    };
+
     $scope.logout = function() {
       Auth.logout()
       .then(function() {

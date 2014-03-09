@@ -7,9 +7,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title></title>
+    <title>Stickr!</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(app) styles/vendor.css -->
     <!-- bower:css -->
@@ -20,6 +22,7 @@
     <!-- endbuild -->
   </head>
   <body ng-app="stickrApp">
+    <div class="wrapper">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -45,6 +48,7 @@
 
     <!-- build:js(app) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -64,6 +68,14 @@
         <script src="scripts/services/session.js"></script>
         <script src="scripts/services/user.js"></script>
         <script src="scripts/directives/mongooseError.js"></script>
+        <script src="scripts/controllers/select_tabletop.js"></script>
+        <script src="scripts/controllers/seletct_tabletop.js"></script>
+        <script src="scripts/controllers/seletct_sticker.js"></script>
+        <script src="scripts/controllers/put_sticker.js"></script>
+        <script src="scripts/controllers/submit.js"></script>
+        <script src="scripts/controllers/tabletop.js"></script>
+        <script src="scripts/controllers/tutorial.js"></script>
         <!-- endbuild -->
+</div>
 </body>
 </html>

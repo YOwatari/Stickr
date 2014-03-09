@@ -67,10 +67,13 @@ module.exports = function (grunt) {
       },
       livereload: {
         files: [
+          '<%= yeoman.app %>/views/{,*//*//*}*.{html,jade}',
           '<%= yeoman.app %>/views/{,*//*}*.{html,jade}',
+          '<%= yeoman.app %>/views/{,*//*//*}*.{html,jade}',
           '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
           '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
+          "<%= yeoman.app %>/views/partials/edit/serect_tabletop.html"
         ],
       
         options: {
@@ -199,7 +202,7 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/public/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/public/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/public/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            //'<%= yeoman.dist %>/public/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= yeoman.dist %>/public/styles/fonts/*'
           ]
         }

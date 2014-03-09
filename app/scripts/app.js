@@ -16,6 +16,10 @@ angular.module('stickrApp', [
         templateUrl: 'partials/login',
         controller: 'LoginCtrl'
       })
+      .when('/tutorial', {
+        templateUrl: 'partials/tutorial',
+        controller: 'TutorialCtrl'
+      })
       .when('/signup', {
         templateUrl: 'partials/signup',
         controller: 'SignupCtrl'
@@ -24,6 +28,26 @@ angular.module('stickrApp', [
         templateUrl: 'partials/settings',
         controller: 'SettingsCtrl',
         authenticate: true
+      })
+      .when('/edit/select_tabletop', {
+        templateUrl: 'partials/select_tabletop',
+        controller: 'EditSeletctTabletopCtrl'
+      })
+      .when('/edit/select_sticker', {
+        templateUrl: 'partials/select_sticker',
+        controller: 'EditSeletctStickerCtrl'
+      })
+      .when('/edit/put_sticker', {
+        templateUrl: 'partials/put_sticker',
+        controller: 'EditPutStickerCtrl'
+      })
+      .when('/edit/submit', {
+        templateUrl: 'partials/submit',
+        controller: 'EditSubmitCtrl'
+      })
+      .when('/tabletop', {
+        templateUrl: 'partials/tabletop',
+        controller: 'TabletopCtrl'
       })
       .otherwise({
         redirectTo: '/'
