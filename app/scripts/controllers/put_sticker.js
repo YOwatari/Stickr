@@ -360,6 +360,8 @@ angular.module('stickrApp')
             var width = angular.element(ctx).attr('width');
             var height = angular.element(ctx).attr('height');
             var bTabletop;
+            //event type=0:touch type=1:mouse
+            var eventType=-1;
 
             var FPS = function (target) {
                 this.target = target;
@@ -474,6 +476,14 @@ angular.module('stickrApp')
 
             /* 以下 マウスイベント */
             element.bind('mousedown', function (event) {
+                if(eventType == -1){
+                  eventType = 1;  
+                } 
+                if(eventType!=1){
+                  return ;
+                }
+                console.log("mouse down");
+                console.log(event);
                 // クリック位置を記録
                 if (event.offsetX!==undefined) {
                   lastX = event.offsetX;
@@ -482,19 +492,28 @@ angular.module('stickrApp')
                   lastX = event.layerX - event.currentTarget.offsetLeft;
                   lastY = event.layerY - event.currentTarget.offsetTop;
                 }
+                currentX = lastX;
+                currentY = lastY;
                 console.log('lastX:'+lastX+'last:'+lastY);
                 downEvent();
             });
 
             element.bind('touchstart',function (event){
-              console.log("start");
+              if(eventType == -1){
+                  eventType = 0;  
+              }
+              if(eventType!=0){
+                  return ;
+              }
+              console.log("touch start");
               console.log(event);
-              console.log(event.originalEvent.touches[0].pageX);
                 // タップ位置を記録
-                if (event.originalEvent.touches[0].offsetX!==undefined) {
-                  lastX = event.originalEvent.touches[0].pageX;
-                  lastY = event.originalEvent.touches[0].pageY;
+                if (event.originalEvent.touches[0].pageX!==undefined) {
+                  lastX = event.originalEvent.touches[0].pageX - event.currentTarget.offsetLeft;
+                  lastY = event.originalEvent.touches[0].pageY - event.currentTarget.offsetTop;
                 }
+                currentX = lastX;
+                currentY = lastY;
                 console.log('lastX:'+lastX+'last:'+lastY);
                 downEvent();
                 $(window).off('.noScroll');
@@ -516,14 +535,17 @@ angular.module('stickrApp')
                 // タップ位置を取得
                 if(event.originalEvent.touches[0].pageX!==undefined){
                   console.log("if");
-                  currentX = event.originalEvent.touches[0].pageX;
-                  currentY = event.originalEvent.touches[0].pageY;
+                  currentX = event.originalEvent.touches[0].pageX - event.currentTarget.offsetLeft;
+                  currentY = event.originalEvent.touches[0].pageY - event.currentTarget.offsetTop;
                 }
                 moveEvent();
                 console.log(currentX);
             });
 
             element.bind('mouseup', function (event) {
+                if(eventType!=1){
+                  return ;
+                }
                 // タップ位置を記録
                 if (event.offsetX!==undefined) {
                   currentX = event.offsetX;
@@ -536,6 +558,9 @@ angular.module('stickrApp')
             });
 
             element.bind('touchend', function (event) {
+                if(eventType!=0){
+                  return ;
+                }
                 upEvent();
                 console.log("end");
                 console.log(currentX);
