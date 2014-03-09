@@ -3,7 +3,7 @@
 <div class="jumbotron putstickr">
     <div id="sidebar">
         <!--ステッカー一覧画面　-->
-        <div id="steckeritems">
+        <div id="steckeritems" items-watch>
             <!-- ステッカー画像 -->
             <img ng-repeat="item in imgStickers" src="{{ item.src }}" width="{{ item.width }}" height="{{ item.height }}" ng-click="selectStickr($index)">
         </div>

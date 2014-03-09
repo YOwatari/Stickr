@@ -7,6 +7,7 @@ $(window).on('touchmove.noScroll', function(e) {
     e.preventDefault();
 });
 
+
 angular.module('stickrApp')
   .controller('EditPutStickerCtrl', function ($scope, $http) {
     $http.get('/api/awesomeThings').success(function (awesomeThings) {
@@ -331,6 +332,57 @@ angular.module('stickrApp')
   });
 
 
+angular.module('stickrApp')
+  .directive('itemsWatch', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element) {
+          var touchStartPositionX;
+          var touchStartPositionY;
+          var touchMovePositionX;
+          var touchMovePositionY;
+          var moveFarX;
+          var moveFarY;
+          var startScrollX;
+          var startScrollY;
+          var moveScrollX;
+          var moveScrollY;
+          var touch;
+
+          element.bind('touchstart', function (e) {
+              touch = e.originalEvent.touches[0];
+              touchStartPositionX = touch.pageX;
+              touchStartPositionY = touch.pageY;
+              //タッチ前スクロールをとる
+              startScrollX = $('#steckeritems').scrollLeft();
+              startScrollY = $('#steckeritems').scrollTop();
+              console.log("item start");
+          });
+
+          element.bind('touchmove', function (e) {
+            touch = e.originalEvent.touches[0];
+
+            e.preventDefault();
+            //現在の座標を取得
+            touchMovePositionX = touch.pageX;
+            touchMovePositionY = touch.pageY;
+            //差をとる
+            moveFarX = touchStartPositionX - touchMovePositionX;
+            moveFarY = touchStartPositionY - touchMovePositionY;
+            //スクロールを動かす
+            moveScrollX = startScrollX +moveFarX;
+            moveScrollY = startScrollY +moveFarY;
+            $('#steckeritems').scrollLeft(moveScrollX);
+            $('#steckeritems').scrollTop(moveScrollY);
+
+            console.log("item move");
+          });
+
+        } // link
+      }; // return
+  });
+
+
 // Canvasのイベント受け取り
 angular.module('stickrApp')
   .directive('canvasWatch', function () {
@@ -484,20 +536,19 @@ angular.module('stickrApp')
                 }
                 console.log('lastX:'+lastX+'last:'+lastY);
                 downEvent();
+                console.log('mousedown');
             });
 
             element.bind('touchstart',function (event){
-              console.log("start");
-              console.log(event);
               console.log(event.originalEvent.touches[0].pageX);
                 // タップ位置を記録
-                if (event.originalEvent.touches[0].offsetX!==undefined) {
-                  lastX = event.originalEvent.touches[0].pageX;
-                  lastY = event.originalEvent.touches[0].pageY;
+                if (event.originalEvent.touches[0].pageX!==undefined) {
+                  lastX = event.originalEvent.touches[0].pageX - event.currentTarget.offsetLeft;
+                  lastY = event.originalEvent.touches[0].pageY - event.currentTarget.offsetTop;
                 }
                 console.log('lastX:'+lastX+'last:'+lastY);
                 downEvent();
-                $(window).off('.noScroll');
+                console.log("touchstart");
             });
 
             element.bind('mousemove', function (event) {
@@ -510,17 +561,17 @@ angular.module('stickrApp')
                   currentY = event.layerY - event.currentTarget.offsetTop;
                 }
                 moveEvent();
+                console.log('mousemove');
             });
 
             element.bind('touchmove', function (event) {
                 // タップ位置を取得
                 if(event.originalEvent.touches[0].pageX!==undefined){
-                  console.log("if");
-                  currentX = event.originalEvent.touches[0].pageX;
-                  currentY = event.originalEvent.touches[0].pageY;
+                  currentX = event.originalEvent.touches[0].pageX - event.currentTarget.offsetLeft;
+                  currentY = event.originalEvent.touches[0].pageY - event.currentTarget.offsetTop;
                 }
                 moveEvent();
-                console.log(currentX);
+                console.log('touchmove');
             });
 
             element.bind('mouseup', function (event) {
@@ -533,12 +584,12 @@ angular.module('stickrApp')
                   currentY = event.layerY - event.currentTarget.offsetTop;
                 }
                 upEvent();
+                console.log('mouseup');
             });
 
             element.bind('touchend', function (event) {
                 upEvent();
-                console.log("end");
-                console.log(currentX);
+                console.log("toucend");
             });
 
             element.bind('mouseout', function (event) {
