@@ -480,12 +480,12 @@ angular.module('stickrApp')
 
             element.bind('touchstart',function (event){
                 // タップ位置を記録
-                if (event.touches[0].offsetX!==undefined) {
-                  lastX = event.touches[0].offsetX;
-                  lastY = event.touches[0].offsetY;
+                if (event.originalEvent.touches[0].pageX!==undefined) {
+                  lastX =  event.originalEvent.touches[0].pageX;
+                  lastY =  event.originalEvent.touches[0].pageY;
                 } else { // Firefox compatibility
-                  lastX = event.touches[0].layerX - event.currentTarget.offsetLeft;
-                  lastY = event.touches[0].layerY - event.currentTarget.offsetTop;
+                  lastX = event.originalEvent.touches[0].layerX - event.currentTarget.offsetLeft;
+                  lastY = event.originalEvent.touches[0].layerY - event.currentTarget.offsetTop;
                 }
                 console.log('lastX:'+lastX+'last:'+lastY);
                 downEvent();
@@ -505,12 +505,9 @@ angular.module('stickrApp')
 
             element.bind('touchmove', function (event) {
                 // タップ位置を取得
-                if(event.touches[0].offsetX!==undefined){
-                  currentX = event.touches[0].offsetX;
-                  currentY = event.touches[0].offsetX;
-                } else {
-                  currentX = event.touches[0].layerX - event.currentTarget.offsetLeft;
-                  currentY = event.touches[0].layerY - event.currentTarget.offsetTop;
+                if(event.originalEvent.touches[0].pageX!==undefined){
+                  currentX = event.originalEvent.touches[0].pageX;
+                  currentY = event.originalEvent.touches[0].pageY;
                 }
                 moveEvent();
             });
@@ -528,19 +525,12 @@ angular.module('stickrApp')
             });
 
             element.bind('touchend', function (event) {
-                // タップ位置を記録
-                if (event.touches[0].offsetX!==undefined) {
-                  currentX = event.touches[0].offsetX;
-                  currentY = event.touches[0].offsetY;
-                } else { // Firefox compatibility
-                  currentX = event.touches[0].layerX - event.currentTarget.offsetLeft;
-                  currentY = event.touches[0].layerY - event.currentTarget.offsetTop;
-                }
                 upEvent();
             });
 
             element.bind('mouseout', function (event) {
-              outEvent();
+              // タップ位置を記録
+                  outEvent();
             });
 
             function downEvent(){
