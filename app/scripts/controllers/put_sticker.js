@@ -29,8 +29,8 @@ angular.module('stickrApp')
         $scope.imgStickers = [
           {
             'src': 'images/sticker/stickr_logo.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/adobe_dreamweaver.png',
@@ -64,8 +64,8 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/chatworks.png',
-            'width': 160,
-            'height': 55
+            'width': 80,
+            'height': 27.5
           },
           {
             'src': 'images/sticker/colo_c.png',
@@ -99,33 +99,33 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/donuts_logo.png',
-            'width': 160,
-            'height': 70
+            'width': 80,
+            'height': 35
           },
           {
             'src': 'images/sticker/drecom_hentai.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/drecom.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/gaiax.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/gloops.png',
-            'width': 160,
-            'height': 99
+            'width': 80,
+            'height': 49.5
           },
           {
             'src': 'images/sticker/h1_logo.png',
-            'width': 160,
-            'height': 30
+            'width': 80,
+            'height': 15
           },
           {
             'src': 'images/sticker/github.png',
@@ -139,13 +139,13 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/herlock_02.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/herlock.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/html5.png',
@@ -169,18 +169,18 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/klanb_games.png',
-            'width': 160,
-            'height': 50
+            'width': 80,
+            'height': 25
           },
           {
             'src': 'images/sticker/leve_b.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/leve_w.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/logo_klab.png',
@@ -189,8 +189,8 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/logo_ver4.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/mercari.png',
@@ -204,8 +204,8 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/platform_01.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/pyfes.png',
@@ -229,8 +229,8 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/riak_004.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/usagee.png',
@@ -274,18 +274,18 @@ angular.module('stickrApp')
           },
           {
             'src': 'images/sticker/base.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/pixta_rect.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           },
           {
             'src': 'images/sticker/supporters.png',
-            'width': 160,
-            'height': 80
+            'width': 80,
+            'height': 40
           }
         ];
 
