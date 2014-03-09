@@ -13,9 +13,9 @@ angular.module('stickrApp')
         $scope.awesomeThings = awesomeThings;
 
         $scope.imgTabletop = [{
-            'src': 'images/tabletop/Mac_11inB.png',
+            'src': 'images/tabletop/surface.png',
             'width': 680,
-            'height': 435
+            'height': 428
           }];
         $scope.backTabletop = [{
             'ref': $scope.imgTabletop[0],
@@ -487,16 +487,17 @@ angular.module('stickrApp')
             });
 
             element.bind('touchstart',function (event){
+              console.log("start");
+              console.log(event);
+              console.log(event.originalEvent.touches[0].pageX);
                 // タップ位置を記録
-                if (event.touches[0].offsetX!==undefined) {
-                  lastX = event.touches[0].offsetX;
-                  lastY = event.touches[0].offsetY;
-                } else { // Firefox compatibility
-                  lastX = event.touches[0].layerX - event.currentTarget.offsetLeft;
-                  lastY = event.touches[0].layerY - event.currentTarget.offsetTop;
+                if (event.originalEvent.touches[0].offsetX!==undefined) {
+                  lastX = event.originalEvent.touches[0].pageX;
+                  lastY = event.originalEvent.touches[0].pageY;
                 }
                 console.log('lastX:'+lastX+'last:'+lastY);
                 downEvent();
+                $(window).off('.noScroll');
             });
 
             element.bind('mousemove', function (event) {
@@ -513,14 +514,13 @@ angular.module('stickrApp')
 
             element.bind('touchmove', function (event) {
                 // タップ位置を取得
-                if(event.touches[0].offsetX!==undefined){
-                  currentX = event.touches[0].offsetX;
-                  currentY = event.touches[0].offsetX;
-                } else {
-                  currentX = event.touches[0].layerX - event.currentTarget.offsetLeft;
-                  currentY = event.touches[0].layerY - event.currentTarget.offsetTop;
+                if(event.originalEvent.touches[0].pageX!==undefined){
+                  console.log("if");
+                  currentX = event.originalEvent.touches[0].pageX;
+                  currentY = event.originalEvent.touches[0].pageY;
                 }
                 moveEvent();
+                console.log(currentX);
             });
 
             element.bind('mouseup', function (event) {
@@ -536,19 +536,13 @@ angular.module('stickrApp')
             });
 
             element.bind('touchend', function (event) {
-                // タップ位置を記録
-                if (event.touches[0].offsetX!==undefined) {
-                  currentX = event.touches[0].offsetX;
-                  currentY = event.touches[0].offsetY;
-                } else { // Firefox compatibility
-                  currentX = event.touches[0].layerX - event.currentTarget.offsetLeft;
-                  currentY = event.touches[0].layerY - event.currentTarget.offsetTop;
-                }
                 upEvent();
+                console.log("end");
+                console.log(currentX);
             });
 
             element.bind('mouseout', function (event) {
-              outEvent();
+                outEvent();
             });
 
             function downEvent(){
