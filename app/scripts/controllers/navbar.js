@@ -2,16 +2,10 @@
 
 angular.module('stickrApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
-    $scope.phase = [{
-      'title': 'tabletop',
-      'link': '/edit/select_tabletop'
-    }, {
+    $scope.phase = [ {
       'title': 'edit',
       'link': '/edit/put_sticker'
-    }, {
-      'title': 'complete',
-      'link': '/edit/submit'
-    }];
+    } ];
 
     $scope.editPageCheck = function () {
       return $location.path().indexOf('edit') !== -1;
